@@ -1,0 +1,42 @@
+.tile{
+    width: 50px; /* Adjust the width and height to make your square as desired */
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    font-weight: bold;
+    border-radius: 10px; /* Add rounded corners */
+    border-color: black;
+    border-style: solid;
+}
+
+.bank {
+    background-color: #ffebbd; /* Set your desired background color */
+    color: #000000;
+    cursor: pointer;
+}
+
+.selected-bank {
+    background-color: #6e90ff; /* Set your desired background color */
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.bank-empty {
+    background-color: #7d7d7d; /* Set your desired background color */
+    color: #ffffff;
+}
+
+.board-empty {
+    background-color: grey; /* Set your desired background color */
+    border-color: black;
+    cursor: pointer;
+}
+
+.selected-board-empty {
+
+    background-color: white; /* Set your desired background color */
+    border-color: #6e90ff;
+    cursor: pointer;
+}

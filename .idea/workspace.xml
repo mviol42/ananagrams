@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ce7b867c-2b6d-4120-add1-8fac3cc08554" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Ananagrams.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/BankTile.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Board.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Board.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/BoardTile.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Tile.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Tile.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/TileBank.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/TileBank.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/public/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logo.svg" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GoLibraries">
+    <option name="indexEntireGoPath" value="false" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2V9OD1Hnzc4gRxSFWvjtT6OZcw2" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="go.format.on.save.advertiser.fired" value="true" />
+    <property name="go.formatter.settings.were.checked" value="true" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ce7b867c-2b6d-4120-add1-8fac3cc08554" name="Changes" comment="" />
+      <created>1694244711372</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1694244711372</updated>
+      <workItem from="1694244714150" duration="347000" />
+      <workItem from="1694245106328" duration="77000" />
+      <workItem from="1694245194579" duration="58000" />
+      <workItem from="1694245292859" duration="92000" />
+      <workItem from="1694245407507" duration="133000" />
+      <workItem from="1694245550938" duration="21000" />
+      <workItem from="1694245579649" duration="710000" />
+      <workItem from="1694246722134" duration="23000" />
+      <workItem from="1694246748245" duration="1001000" />
+      <workItem from="1694247921176" duration="75000" />
+      <workItem from="1694248022167" duration="825000" />
+      <workItem from="1694248897805" duration="1154000" />
+      <workItem from="1694250230872" duration="9000" />
+      <workItem from="1694250292299" duration="32000" />
+      <workItem from="1694250338018" duration="14000" />
+      <workItem from="1694250363938" duration="95000" />
+      <workItem from="1694250466985" duration="47000" />
+      <workItem from="1694250528048" duration="1250000" />
+      <workItem from="1694251856002" duration="135000" />
+      <workItem from="1694252030146" duration="8000" />
+      <workItem from="1694252058952" duration="6000" />
+      <workItem from="1694252150108" duration="162000" />
+      <workItem from="1694252352597" duration="153000" />
+      <workItem from="1694252547535" duration="94000" />
+      <workItem from="1694252666156" duration="1501000" />
+      <workItem from="1694254235827" duration="3741000" />
+      <workItem from="1694258199673" duration="8971000" />
+      <workItem from="1694271522303" duration="86000" />
+      <workItem from="1694271732012" duration="2000" />
+      <workItem from="1694271838288" duration="76000" />
+      <workItem from="1694271973180" duration="12000" />
+      <workItem from="1694272011359" duration="7000" />
+      <workItem from="1694272761607" duration="7204000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VgoProject">
+    <integration-enabled>true</integration-enabled>
+  </component>
+</project>

@@ -1,0 +1,20 @@
+.tile-wrapper {
+    display: flex; /* Use flexbox to align items horizontally */
+    align-items: center; /* Vertically center items within the .tile-wrapper */
+}
+
+.tile-count {
+    position:relative;
+    right: 5px;
+    width: 30px; /* Adjust the width and height to make your square as desired */
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 4px; /* Add rounded corners */
+    background-color: darkgrey;
+    z-index: -1;
+    color: white;
+}
