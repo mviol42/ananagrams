@@ -1,84 +1,79 @@
-import React, {Component} from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Board, { boardSize }from './Board';
-import Tile from './Tile';
+import Board from './Board';
 import TileBank from './TileBank';
+import { DndContext } from '@dnd-kit/core';
 
 interface AppProps {}
 
-interface AppState {
-    alphabetMap: Map<string, number>;
-    boardMap: Map<string, string>;
-    isBoardSelected: boolean;
-    isLetterSelected:boolean;
-    boardSelected: Tile | undefined;
-    letterSelected: Tile | undefined;
-}
+export const boardSize = 8;
 
-class App extends Component<AppProps, AppState> {
-  constructor(props: AppProps) {
-    super(props);
-      let alphabetMap = new Map<string, number>();
-      for (let i = 65; i <= 91; i++) {
-          const letter = String.fromCharCode(i); // Convert ASCII code to letter
-          const randomValue = Math.random() < 0.5 ? 0 : 1; // Generate a random 0 or 1
-          alphabetMap.set(letter, randomValue);
-      }
+function App(props: AppProps) {
+    var defaultValueInBoard = ''; // by default
+    var defaultBoard = [...Array(boardSize)].map(e => Array(boardSize).fill(defaultValueInBoard));
+    const [boardLetters, setBoardLetters] = useState<string[][]>(defaultBoard);
+    const [tileBankLetters, setTileBankLetters] = useState<string[]>(['T', 'A', 'B', 'L', 'E', 'B', 'T']);
 
-      let boardMap = new Map<string, string>();
-      for (let i = 0; i < boardSize; i++) {
-          for (let j = 0; j < boardSize; j++) {
-              boardMap.set(`${i}-${j}`, "");
-          }
-      }
-    this.state = { alphabetMap:alphabetMap,
-        boardMap:boardMap,
-        isBoardSelected: false,
-        isLetterSelected: false,
-        boardSelected: undefined,
-        letterSelected: undefined
-        };
-  }
+    const updateBoard = (e: { active: any; over: any }) => {
+        if (e.active.data.current.row === e.over.data.current.row && e.active.data.current.col === e.over.data.current.col) { return; }
+        const letter = e.active.data.current.letter;
+        var tempBoardLetters = {...boardLetters};
+        var tempLetter = "";
 
-  render () {
+        if (tempBoardLetters[e.over.data.current.row][e.over.data.current.col]) {
+            tempLetter = tempBoardLetters[e.over.data.current.row][e.over.data.current.col]
+        }
+
+
+        if (e.active.data.current.inBank) {
+            const letterIndex = tileBankLetters.indexOf(letter);
+            tileBankLetters.splice(letterIndex, 1);
+        }
+
+        else {
+            tempBoardLetters[e.active.data.current.row][e.active.data.current.col] = "";
+        }
+
+        if (tempLetter) { tileBankLetters.push(tempLetter); }
+
+        tempBoardLetters[e.over.data.current.row][e.over.data.current.col] = letter;
+
+        setTileBankLetters(tileBankLetters);
+        setBoardLetters(tempBoardLetters);
+    }
+
+    const addToBank = (e: { active: any; over: any }) => {
+        if (e.active.data.current.inBank) { return; }
+        const letter = e.active.data.current.letter;
+        var tempBoardLetters = {...boardLetters};
+        tempBoardLetters[e.active.data.current.row][e.active.data.current.col] = "";
+        tileBankLetters.push(letter);
+
+        setTileBankLetters(tileBankLetters);
+        setBoardLetters(tempBoardLetters);
+    }
+
+    const handleDragEnd = (e: { active: any; over: any }) => {
+        if (e.over === null) { return; }
+        if (e.over.id === 'drop-box') { addToBank(e); }
+        else { updateBoard(e); }
+    };
+
     return (
         <div className="App">
-            <div className='row'>
-                <div className='col-8'>
-                    <Board currentLayout={this.state.boardMap} setSelected={this.setBoardSelected.bind(this)}/>
+            <DndContext onDragEnd={handleDragEnd}>
+                <div className="row">
+                    <div className="col-8">
+                        <Board currentBoard={boardLetters}/>
+                    </div>
+                    <div className="col-4">
+                        <TileBank bank={tileBankLetters}/>
+                    </div>
                 </div>
-                <div className='col-4'>
-                    <TileBank tileCount={this.state.alphabetMap} setSelected={this.setLetterSelected.bind(this)}/>
-                </div>
-            </div>
+            </DndContext>
         </div>
     );
-  }
-
-  setBoardSelected(tile: Tile) {
-      let isBoardSelected = !(tile === undefined)
-      this.setState({isBoardSelected:isBoardSelected, boardSelected:isBoardSelected ? tile : undefined});
-      this.checkSwap();
-  }
-
-  setLetterSelected(tile: Tile) {
-      let isLetterSelected = !(tile === undefined)
-      this.setState({isLetterSelected:isLetterSelected, letterSelected:isLetterSelected ? tile : undefined});
-      this.checkSwap();
-  }
-
-  checkSwap () {
-    if (this.state.isLetterSelected
-        && this.state.isBoardSelected
-        && this.state.boardSelected
-        && this.state.letterSelected
-        && this.state.letterSelected.props.letter) {
-        let index: string = `${this.state.boardSelected.props.rowIndex}-${this.state.boardSelected.props.colIndex}`;
-
-        this.state.boardMap.set(index, this.state.letterSelected.props.letter);
-    }
-  }
 }
 
 export default App;

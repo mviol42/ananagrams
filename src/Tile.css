@@ -11,32 +11,24 @@
     border-style: solid;
 }
 
+.selected {
+    border-color: blue;
+}
+
 .bank {
     background-color: #ffebbd; /* Set your desired background color */
     color: #000000;
     cursor: pointer;
 }
 
-.selected-bank {
-    background-color: #6e90ff; /* Set your desired background color */
-    color: #FFFFFF;
+.board-full {
+    background-color: floralwhite; /* Set your desired background color */
+    border-color: blue;
     cursor: pointer;
-}
-
-.bank-empty {
-    background-color: #7d7d7d; /* Set your desired background color */
-    color: #ffffff;
 }
 
 .board-empty {
-    background-color: grey; /* Set your desired background color */
+    background-color: lightgrey; /* Set your desired background color */
     border-color: black;
-    cursor: pointer;
-}
-
-.selected-board-empty {
-
-    background-color: white; /* Set your desired background color */
-    border-color: #6e90ff;
     cursor: pointer;
 }
