@@ -4,6 +4,7 @@ import './App.css';
 import Board from './Board';
 import TileBank from './TileBank';
 import { DndContext } from '@dnd-kit/core';
+import cn from 'classnames';
 
 interface AppProps {}
 
@@ -13,7 +14,7 @@ function App(props: AppProps) {
     var defaultValueInBoard = ''; // by default
     var defaultBoard = [...Array(boardSize)].map(e => Array(boardSize).fill(defaultValueInBoard));
     const [boardLetters, setBoardLetters] = useState<string[][]>(defaultBoard);
-    const [tileBankLetters, setTileBankLetters] = useState<string[]>(['T', 'A', 'B', 'L', 'E', 'B', 'T']);
+    const [tileBankLetters, setTileBankLetters] = useState<string[]>(['T', 'A', 'B', 'L', 'E', 'B', 'T', 'T', 'A', 'B', 'L', 'E', 'B', 'T', 'T', 'A', 'B', 'L', 'E', 'B', 'T']);
 
     const updateBoard = (e: { active: any; over: any }) => {
         if (e.active.data.current.row === e.over.data.current.row && e.active.data.current.col === e.over.data.current.col) { return; }
@@ -64,10 +65,10 @@ function App(props: AppProps) {
         <div className="App">
             <DndContext onDragEnd={handleDragEnd}>
                 <div className="row">
-                    <div className="col-8">
+                    <div className={cn("col-8", "board")}>
                         <Board currentBoard={boardLetters}/>
                     </div>
-                    <div className="col-4">
+                    <div className={cn("col-4", "tile-bank")}>
                         <TileBank bank={tileBankLetters}/>
                     </div>
                 </div>

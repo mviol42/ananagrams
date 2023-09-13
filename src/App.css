@@ -2,6 +2,22 @@
   text-align: center;
 }
 
+.row {
+  justify-content: center;
+}
+
+.board {
+  width: fit-content !important;
+  min-width: 700px !important;
+}
+
+.tile-bank {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

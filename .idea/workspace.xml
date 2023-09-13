@@ -7,15 +7,10 @@
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Board.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Board.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Board.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Board.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BoardTile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/BoardTile.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LetterTile.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LetterTile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LetterTile.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OldTileBank.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Tile.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tile.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TileBank.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/TileBank.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TileBank.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/TileBank.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +92,7 @@
       <workItem from="1694271838288" duration="76000" />
       <workItem from="1694271973180" duration="12000" />
       <workItem from="1694272011359" duration="7000" />
-      <workItem from="1694272761607" duration="29651000" />
+      <workItem from="1694272761607" duration="32414000" />
     </task>
     <servers />
   </component>

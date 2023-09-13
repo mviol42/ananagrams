@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './Tile.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import cn from 'classnames';
 
 interface BoardTileProps {}
 
@@ -13,7 +14,7 @@ class BoardTile extends Component<BoardTileProps, BoardTileState> {
 
     render () {
         return (
-                <div className='board-empty tile'></div>
+                <div className='board-empty tile'> </div>
         );
     }
 }

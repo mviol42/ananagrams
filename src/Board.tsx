@@ -5,6 +5,7 @@ import BoardTile from './BoardTile';
 import { useDroppable } from '@dnd-kit/core';
 import App, { boardSize }from './App';
 import LetterTile from './LetterTile';
+import cn from 'classnames';
 
 interface BoardProps {
     currentBoard: string[][];
@@ -49,7 +50,7 @@ class Board extends Component<BoardProps, BoardState> {
                 );
             }
             board.push(
-                <div className="row mt-3" key = {`${i}`}> { row } </div>
+                <div className={cn("row mt-3", "tile-row")} key = {`${i}`}> { row } </div>
             );
         }
         return (
