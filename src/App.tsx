@@ -5,18 +5,16 @@ import TileBank from './TileBank';
 import { DndContext } from '@dnd-kit/core';
 import cn from 'classnames';
 
-var dictionary = require('dictionary-en');
-var nspell = require('nspell');
-
 interface AppProps {}
 
 export const boardSize = 8;
+
 
 function App(props: AppProps) {
     var defaultValueInBoard = ''; // by default
 
     var defaultBoard = [...Array(boardSize)].map(e => Array(boardSize).fill(defaultValueInBoard));
-    var dailyLetters = ['T', 'A', 'B']
+    var dailyLetters = ['A']
     const [boardLetters, setBoardLetters] = useState<string[][]>(defaultBoard);
     const [tileBankLetters, setTileBankLetters] = useState<string[]>(dailyLetters);
 
@@ -69,20 +67,6 @@ function App(props: AppProps) {
     }
 
     const validate = () => {
-        for (let i = 0; i < boardSize; i++) {
-            var currentRow: string = '';
-            for (let j = 0; j < boardSize; j++) {
-                if (boardLetters[i][j]) {
-                    currentRow += boardLetters[i][j];
-                } else {
-                    currentRow += ' ';
-                }
-            }
-            var words = currentRow.split(' ');
-            words.forEach(function (word) {
-
-            })
-        }
     }
 
     return (
