@@ -40,6 +40,61 @@
   color: whitesmoke;
 }
 
+
+.button {
+  width: 90px;
+  height: 35px;
+  border-color: transparent;
+  margin: 10px;
+  border-radius: 10px; /* Add rounded corners */
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  background-color: black;
+}
+
+.button:hover {
+  color: white;
+  background-color: darkslategrey;
+}
+
+.button:disabled {
+  color: black;
+  background-color: lightgrey;
+  cursor: not-allowed;
+}
+
+.button:disabled:hover {
+  color: black;
+  background-color: lightgrey;
+  border: transparent;
+  cursor: not-allowed;
+}
+
+
+.validate-button {
+  width: 90px;
+  height: 35px;
+  border-color: transparent;
+  margin: 10px;
+  border-radius: 10px; /* Add rounded corners */
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  background-color: darkgreen;
+}
+
+.validate-button:hover {
+  color: white;
+  background-color: seagreen;
+}
+
+.validate-button:disabled {
+  color: black;
+  background-color: lightgrey;
+  cursor: not-allowed;
+}
+
 .App-link {
   color: #61dafb;
 }

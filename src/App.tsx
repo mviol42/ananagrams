@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Board from './Board';
 import TileBank from './TileBank';
 import { DndContext } from '@dnd-kit/core';
 import cn from 'classnames';
+
+var dictionary = require('dictionary-en');
+var nspell = require('nspell');
 
 interface AppProps {}
 
@@ -12,9 +14,11 @@ export const boardSize = 8;
 
 function App(props: AppProps) {
     var defaultValueInBoard = ''; // by default
+
     var defaultBoard = [...Array(boardSize)].map(e => Array(boardSize).fill(defaultValueInBoard));
+    var dailyLetters = ['T', 'A', 'B']
     const [boardLetters, setBoardLetters] = useState<string[][]>(defaultBoard);
-    const [tileBankLetters, setTileBankLetters] = useState<string[]>(['T', 'A', 'B', 'L', 'E', 'B', 'T', 'T', 'A', 'B', 'L', 'E', 'B', 'T', 'T', 'A', 'B', 'L', 'E', 'B', 'T']);
+    const [tileBankLetters, setTileBankLetters] = useState<string[]>(dailyLetters);
 
     const updateBoard = (e: { active: any; over: any }) => {
         if (e.active.data.current.row === e.over.data.current.row && e.active.data.current.col === e.over.data.current.col) { return; }
@@ -33,10 +37,8 @@ function App(props: AppProps) {
         }
 
         else {
-            tempBoardLetters[e.active.data.current.row][e.active.data.current.col] = "";
+            tempBoardLetters[e.active.data.current.row][e.active.data.current.col] = tempLetter;
         }
-
-        if (tempLetter) { tileBankLetters.push(tempLetter); }
 
         tempBoardLetters[e.over.data.current.row][e.over.data.current.col] = letter;
 
@@ -61,6 +63,28 @@ function App(props: AppProps) {
         else { updateBoard(e); }
     };
 
+    const clear = () => {
+        setBoardLetters(defaultBoard);
+        setTileBankLetters(dailyLetters);
+    }
+
+    const validate = () => {
+        for (let i = 0; i < boardSize; i++) {
+            var currentRow: string = '';
+            for (let j = 0; j < boardSize; j++) {
+                if (boardLetters[i][j]) {
+                    currentRow += boardLetters[i][j];
+                } else {
+                    currentRow += ' ';
+                }
+            }
+            var words = currentRow.split(' ');
+            words.forEach(function (word) {
+
+            })
+        }
+    }
+
     return (
         <div className="App">
             <DndContext onDragEnd={handleDragEnd}>
@@ -70,6 +94,11 @@ function App(props: AppProps) {
                     </div>
                     <div className={cn("col-4", "tile-bank")}>
                         <TileBank bank={tileBankLetters}/>
+                        <div>
+                            <button className='button' onClick={clear}> Clear </button>
+                            <button disabled={tileBankLetters.length !== 0} className='validate-button' onClick={validate}> Validate </button>
+                        </div>
+
                     </div>
                 </div>
             </DndContext>

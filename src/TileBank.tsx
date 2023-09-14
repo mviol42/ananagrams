@@ -29,10 +29,10 @@ class TileBank extends Component<TileBankProps, TileBankState> {
         return (
             <div>
                 <div className="container">
-                    <div className="row justify-content-center align-items-center ">
-                        {tiles}
-                    </div>
-                    <TileBankDroppable id='drop-box' children={<div className='drop-box'> Drop tiles here to remove from board </div>}></TileBankDroppable>
+                    <TileBankDroppable id='drop-box' children={
+                        <div className='drop-box row justify-content-center align-items-center'>
+                            {tiles}
+                        </div>}></TileBankDroppable>
                 </div>
             </div>
         );
@@ -42,7 +42,7 @@ class TileBank extends Component<TileBankProps, TileBankState> {
 export default TileBank;
 
 function TileBankDroppable(props: { id: any, children: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined}) {
-    const {isOver, setNodeRef} = useDroppable({
+    const {setNodeRef} = useDroppable({
         id: props.id,
     });
 

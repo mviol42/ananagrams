@@ -42,7 +42,7 @@ function Draggable(props: { id: any;
                             inBank: boolean,
                             row?: number,
                             col?: number}) {
-    const {attributes, listeners, setNodeRef, transform, isDragging} = useDraggable({
+    const {attributes, listeners, setNodeRef, transform} = useDraggable({
         id: props.id,
         data: {
             inBank: props.inBank,

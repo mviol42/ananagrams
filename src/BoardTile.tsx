@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import './Tile.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import cn from 'classnames';
 
 interface BoardTileProps {}
 

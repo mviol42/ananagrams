@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './Board.css'
 import BoardTile from './BoardTile';
 import { useDroppable } from '@dnd-kit/core';
-import App, { boardSize }from './App';
+import { boardSize }from './App';
 import LetterTile from './LetterTile';
 import cn from 'classnames';
 
@@ -68,7 +68,7 @@ function Droppable(props: { id: any,
                     letter: string | undefined,
                     row: number,
                     col: number}) {
-    const {isOver, setNodeRef} = useDroppable({
+    const {setNodeRef} = useDroppable({
         id: props.id,
         data: {
             type: 'board',
