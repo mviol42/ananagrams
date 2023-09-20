@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './Board.css'
-import BoardTile from './BoardTile';
+import BoardTile from './tiles/BoardTile';
 import { useDroppable } from '@dnd-kit/core';
-import { boardSize }from './App';
-import LetterTile from './LetterTile';
+import { boardSize }from '../App';
+import LetterTile from './tiles/LetterTile';
 import cn from 'classnames';
 
 interface BoardProps {
@@ -33,7 +33,7 @@ class Board extends Component<BoardProps, BoardState> {
                                          row={i}
                                          col={j}
                                          letter={""}
-                                        ></Droppable>
+                                        />
                             : <Droppable id={`${i}-${j}`}
                                          row={i}
                                          col={j}
@@ -44,7 +44,7 @@ class Board extends Component<BoardProps, BoardState> {
                                             inBank={false}
                                             row={i}
                                             col={j}
-                                            />}></Droppable>
+                                            />}/>
                         }
                     </div>
                 );

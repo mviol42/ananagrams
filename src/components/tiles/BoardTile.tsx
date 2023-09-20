@@ -13,7 +13,7 @@ class BoardTile extends Component<BoardTileProps, BoardTileState> {
 
     render () {
         return (
-                <div className='board-empty tile'> </div>
+                <div className='board-empty tile'/>
         );
     }
 }

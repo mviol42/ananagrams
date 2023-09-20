@@ -23,11 +23,11 @@ class LetterTile extends Component<LetterTileProps, LetterTileState> {
         return (
             <div className={this.props.inBank ? '' : 'board-full tile'}>
                 <Draggable id={this.props.id}
-                           children={this.props.letter}
-                           letter={this.props.letter}
-                           inBank={this.props.inBank}
-                           row={this.props.row}
-                           col={this.props.col}></Draggable>
+                    children={this.props.letter}
+                    letter={this.props.letter}
+                    inBank={this.props.inBank}
+                    row={this.props.row}
+                    col={this.props.col}/>
             </div>
         );
     }

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './App.css';
-import Board from './Board';
-import TileBank from './TileBank';
+import Board from './components/Board';
+import TileBank from './components/TileBank';
 import { DndContext } from '@dnd-kit/core';
 import cn from 'classnames';
-import { getLetters, getTheme } from './DailyPuzzles/DailyPuzzleReader'
+import { getLetters, getTheme } from './utils/DailyPuzzles/DailyPuzzleReader'
 
 interface AppProps {}
 
@@ -122,7 +122,6 @@ function App(props: AppProps) {
     }
 
     const validate = () => {
-        console.log(validateContinuity() && validateSpelling());
         return validateContinuity() && validateSpelling();
     }
 

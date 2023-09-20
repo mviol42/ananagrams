@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './TileBank.css'
-import LetterTile from './LetterTile';
+import LetterTile from './tiles/LetterTile';
 import { useDroppable } from '@dnd-kit/core';
 
 
@@ -22,7 +22,7 @@ class TileBank extends Component<TileBankProps, TileBankState> {
                 <LetterTile id={`${this.props.bank[i]}-${i}`}
                             key={`${i}`}
                             letter={this.props.bank[i]}
-                            inBank={true}></LetterTile>
+                            inBank={true}/>
             </div>
         ));
 
@@ -32,7 +32,7 @@ class TileBank extends Component<TileBankProps, TileBankState> {
                     <TileBankDroppable id='drop-box' children={
                         <div className='drop-box row justify-content-center align-items-center'>
                             {tiles}
-                        </div>}></TileBankDroppable>
+                        </div>}/>
                 </div>
             </div>
         );
