@@ -4,19 +4,20 @@ import Board from './Board';
 import TileBank from './TileBank';
 import { DndContext } from '@dnd-kit/core';
 import cn from 'classnames';
+import { getLetters, getTheme } from './DailyPuzzles/DailyPuzzleReader'
 
 interface AppProps {}
 
-export const boardSize = 8;
+export const boardSize = 10;
 
 
 function App(props: AppProps) {
-    var defaultValueInBoard = ''; // by default
-
+    var dictionary = require('an-array-of-english-words');
+    var defaultValueInBoard = ' '; // by default
     var defaultBoard = [...Array(boardSize)].map(e => Array(boardSize).fill(defaultValueInBoard));
-    var dailyLetters = ['A']
     const [boardLetters, setBoardLetters] = useState<string[][]>(defaultBoard);
-    const [tileBankLetters, setTileBankLetters] = useState<string[]>(dailyLetters);
+    const [tileBankLetters, setTileBankLetters] = useState<string[]>(getLetters(new Date().toLocaleDateString()));
+    const [theme, setTheme] = useState<string>(getTheme(new Date().toLocaleDateString()));
 
     const updateBoard = (e: { active: any; over: any }) => {
         if (e.active.data.current.row === e.over.data.current.row && e.active.data.current.col === e.over.data.current.col) { return; }
@@ -63,10 +64,41 @@ function App(props: AppProps) {
 
     const clear = () => {
         setBoardLetters(defaultBoard);
-        setTileBankLetters(dailyLetters);
+        setTileBankLetters(getLetters(new Date().toLocaleDateString()));
+    }
+
+    const validateContinuity = () => {
+        return true;
+    }
+
+    const validateSpelling = () => {
+        var words: string[] = []
+        for (let i = 0; i < boardSize; i++) {
+            words.push(boardLetters[i].join(""));
+        }
+
+        for (let i = 0; i < boardSize; i++) {
+            var column: string[] = [];
+            for (let j = 0; j < boardSize; j++) {
+                column.push(boardLetters[j][i]);
+            }
+            words.push(column.join(""));
+        }
+
+        var toCheck = words.join().split(" ");
+
+        for (let i = 0; i < toCheck.length; i++) {
+            if (toCheck[i].length > 1 && dictionary.indexOf(toCheck[i].toLowerCase()) == -1) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     const validate = () => {
+        console.log(validateContinuity() && validateSpelling());
+        return validateContinuity() && validateSpelling();
     }
 
     return (
@@ -77,6 +109,9 @@ function App(props: AppProps) {
                         <Board currentBoard={boardLetters}/>
                     </div>
                     <div className={cn("col-4", "tile-bank")}>
+                        <div>
+                            Today's Theme: {theme}
+                        </div>
                         <TileBank bank={tileBankLetters}/>
                         <div>
                             <button className='button' onClick={clear}> Clear </button>

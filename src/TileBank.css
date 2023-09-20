@@ -21,7 +21,7 @@
 
 .drop-box{
     width: 400px; /* Adjust the width and height to make your square as desired */
-    height: 600px;
+    height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,7 +29,4 @@
     border-color: lightgrey;
     border-style: groove;
     background-color: white;
-    font-size: 25px;
-    font-weight: bold;
-    margin-top: 50px;
 }

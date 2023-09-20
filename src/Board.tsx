@@ -27,7 +27,7 @@ class Board extends Component<BoardProps, BoardState> {
             for (let j = 0; j < boardSize; j++) {
                 row.push(
                     <div className='col' key={`${i}-${j}`}>
-                        { this.props.currentBoard[i][j] === ''
+                        { this.props.currentBoard[i][j] === ' '
                             ? <Droppable id={`${i}-${j}`}
                                          children={<BoardTile/>}
                                          row={i}
