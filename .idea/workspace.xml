@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ce7b867c-2b6d-4120-add1-8fac3cc08554" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Board.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Board.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BoardTile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BoardTile.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LetterTile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LetterTile.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TileBank.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/TileBank.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,8 +58,10 @@
       <recent name="$PROJECT_DIR$/src/dictionaries" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/components" />
+      <recent name="$PROJECT_DIR$/src/utils" />
       <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/src/components/tiles" />
+      <recent name="$PROJECT_DIR$/src/components" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -240,7 +238,7 @@
       <workItem from="1695219286027" duration="6000" />
       <workItem from="1695219296365" duration="19000" />
       <workItem from="1695219318489" duration="24000" />
-      <workItem from="1695219372016" duration="143000" />
+      <workItem from="1695219372016" duration="1019000" />
     </task>
     <servers />
   </component>
