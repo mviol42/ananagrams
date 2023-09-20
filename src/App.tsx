@@ -68,7 +68,32 @@ function App(props: AppProps) {
     }
 
     const validateContinuity = () => {
-        return true;
+        var counter = 0;
+        var grid: string[][] = [];
+
+        for (var i = 0; i < boardSize; i++)
+            grid[i] = boardLetters[i].slice();
+
+        const dfs = (i: number, j: number) => {
+            if (i >= 0 && j >= 0 && i < boardSize && j < boardSize && grid[i][j] !== ' ') {
+                grid[i][j] = ' ';
+                dfs(i + 1, j); // top
+                dfs(i, j + 1); // right
+                dfs(i - 1, j); // bottom
+                dfs(i, j - 1); // left
+            }
+        };
+
+        for (let i = 0; i < boardSize; i++) {
+            for (let j = 0; j < boardSize; j++) {
+                if (grid[i][j] !== ' ') {
+                    counter++;
+                    dfs(i, j);
+                }
+            }
+        }
+
+        return counter === 1;
     }
 
     const validateSpelling = () => {
@@ -88,7 +113,7 @@ function App(props: AppProps) {
         var toCheck = words.join().split(" ");
 
         for (let i = 0; i < toCheck.length; i++) {
-            if (toCheck[i].length > 1 && dictionary.indexOf(toCheck[i].toLowerCase()) == -1) {
+            if (toCheck[i].length > 1 && dictionary.indexOf(toCheck[i].toLowerCase()) === -1) {
                 return false;
             }
         }
