@@ -95,6 +95,54 @@
   cursor: not-allowed;
 }
 
+.red-validate-button {
+  width: 90px;
+  height: 35px;
+  border-color: transparent;
+  margin: 10px;
+  border-radius: 10px; /* Add rounded corners */
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  background-color: darkred;
+}
+
+.red-validate-button:hover {
+  color: white;
+  background-color: indianred;
+}
+
+.red-validate-button:disabled {
+  color: black;
+  background-color: lightgrey;
+  cursor: not-allowed;
+}
+
+.victory-banner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  width: 250px;
+  height: 70px;
+  background-color: whitesmoke;
+  border-radius: 15px;
+  margin: auto;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: bolder;
+  font-size: 42px;
+}
+
+.game {
+  z-index: 1000;
+}
+
+.blur {
+  filter: blur(4px);
+}
+
 .App-link {
   color: #61dafb;
 }

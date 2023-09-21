@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './Board.css'
 import BoardTile from './tiles/BoardTile';
 import { useDroppable } from '@dnd-kit/core';
-import { boardSize }from '../App';
+import {blankTile, boardSize} from '../App';
 import LetterTile from './tiles/LetterTile';
 import cn from 'classnames';
 
@@ -27,12 +27,12 @@ class Board extends Component<BoardProps, BoardState> {
             for (let j = 0; j < boardSize; j++) {
                 row.push(
                     <div className='col' key={`${i}-${j}`}>
-                        { this.props.currentBoard[i][j] === ' '
+                        { this.props.currentBoard[i][j] === blankTile
                             ? <Droppable id={`${i}-${j}`}
                                          children={<BoardTile/>}
                                          row={i}
                                          col={j}
-                                         letter={""}
+                                         letter={blankTile}
                                         />
                             : <Droppable id={`${i}-${j}`}
                                          row={i}

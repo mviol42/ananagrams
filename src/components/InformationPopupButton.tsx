@@ -16,10 +16,15 @@ function InformationPopupButton(props: InformationPopupButtonProps) {
             <div>
                     <h6>Welcome to Terrace!</h6>
                     <p>
-                        Each day, you'll be dealt letter tiles which you need to arrange into an intersecting word grid.
-                        Each letter must be used and the grid must be fully contiguous.
-                        Once your grid is ready, click "Validate" to check if it is a valid configuration.
-                        Additionally, there is a theme each day. There is a guaranteed solution with this theme, but feel free to use any english words to solve the puzzle.
+                        Each day, you'll be dealt letter tiles which you need to arrange into an intersecting word grid. <br />
+                        <br />
+                        Each letter must be used and the grid must be fully contiguous. <br />
+                        <br />
+                        Once your grid is ready, click "Validate" to check if it is a valid configuration.<br />
+                        <br />
+                        Additionally, there will occasionally be a theme. There is a guaranteed solution with this theme, but feel free to use any english words to solve the puzzle.<br />
+                        <br />
+                        Happy solving!
                     </p>
             </div>
         </Tooltip>
@@ -27,7 +32,7 @@ function InformationPopupButton(props: InformationPopupButtonProps) {
 
     const positionerInstance = (
         <OverlayTrigger placement="left" overlay={tooltip}>
-            <button className='popup-button'>i</button>
+            <button className='popup-button'>How to play</button>
         </OverlayTrigger>
     );
     return (
