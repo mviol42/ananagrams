@@ -1,15 +1,9 @@
 import './InformationPopupButton.css'
-import React, { useState } from 'react';
+import React from 'react';
 import cn from 'classnames';
-import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css';
-import 'tippy.js/animations/scale.css';
-import {Button, OverlayTrigger, Tooltip} from "react-bootstrap";
+import { OverlayTrigger, Tooltip} from "react-bootstrap";
 
-interface InformationPopupButtonProps {}
-
-
-function InformationPopupButton(props: InformationPopupButtonProps) {
+function InformationPopupButton() {
     // using this package: https://atomiks.github.io/tippyjs/
     const tooltip = (
         <Tooltip className="my-tooltip" >
