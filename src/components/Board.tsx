@@ -11,14 +11,7 @@ interface BoardProps {
     currentBoard: string[][];
 }
 
-interface BoardState {
-}
-
-class Board extends Component<BoardProps, BoardState> {
-    constructor(props: BoardProps) {
-        super(props);
-    }
-
+class Board extends Component<BoardProps> {
     render () {
         const board = [];
 

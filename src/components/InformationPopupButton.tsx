@@ -1,14 +1,12 @@
 import './InformationPopupButton.css'
 import React from 'react';
-import cn from 'classnames';
 import { OverlayTrigger, Tooltip} from "react-bootstrap";
 
 function InformationPopupButton() {
-    // using this package: https://atomiks.github.io/tippyjs/
     const tooltip = (
         <Tooltip className="my-tooltip" >
             <div>
-                    <h6>Welcome to Terrace!</h6>
+                    <h6>Welcome to Ananagrams!</h6>
                     <p>
                         Each day, you'll be dealt letter tiles which you need to arrange into an intersecting word grid. <br />
                         <br />

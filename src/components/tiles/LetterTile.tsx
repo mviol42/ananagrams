@@ -12,13 +12,7 @@ interface LetterTileProps {
     col?: number
 }
 
-interface LetterTileState {}
-
-class LetterTile extends Component<LetterTileProps, LetterTileState> {
-    constructor(props: LetterTileProps) {
-        super(props);
-    }
-
+class LetterTile extends Component<LetterTileProps> {
     render () {
         return (
             <div className={this.props.inBank ? '' : 'board-full tile'}>

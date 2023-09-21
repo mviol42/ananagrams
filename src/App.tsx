@@ -18,7 +18,7 @@ function App(props: AppProps) {
     var defaultBoard = [...Array(boardSize)].map(e => Array(boardSize).fill(defaultValueInBoard));
     const [boardLetters, setBoardLetters] = useState<string[][]>(defaultBoard);
     const [tileBankLetters, setTileBankLetters] = useState<string[]>(getLetters(new Date().toLocaleDateString()));
-    const [theme, setTheme] = useState<string>(getTheme(new Date().toLocaleDateString()));
+    const [theme] = useState<string>(getTheme(new Date().toLocaleDateString()));
     const [hasWon, setHasWon] = useState<boolean>(false);
     const [wasIncorrect, setWasIncorrect] = useState<boolean>(false);
 

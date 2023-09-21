@@ -9,13 +9,7 @@ interface TileBankProps {
     bank: string[];
 }
 
-interface TileBankState {}
-
-class TileBank extends Component<TileBankProps, TileBankState> {
-    constructor(props: TileBankProps) {
-        super(props);
-    }
-
+class TileBank extends Component<TileBankProps> {
     render () {
         const tiles = Array.from({ length: this.props.bank.length }, (_, i) => (
             <div key={i} className="col-3 mt-4">
