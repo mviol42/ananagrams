@@ -28,8 +28,9 @@
 }
 
 .bank {
-    background-color: #ffebbd; /* Set your desired background color */
-    color: #000000;
+    background-color: #f7dfa6;
+    /*background-color: darkgreen;*/
+    color: black;
     cursor: pointer;
 }
 

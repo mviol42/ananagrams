@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import Board from './components/Board';
 import TileBank from './components/TileBank';
+import InformationPopupButton from './components/InformationPopupButton'
 import { DndContext } from '@dnd-kit/core';
 import cn from 'classnames';
 import { getLetters, getTheme } from './utils/DailyPuzzles/DailyPuzzleReader'
@@ -135,6 +136,7 @@ function App(props: AppProps) {
                     <div className={cn("col-4", "tile-bank")}>
                         <div>
                             Today's Theme: {theme}
+                            <InformationPopupButton/>
                         </div>
                         <TileBank bank={tileBankLetters}/>
                         <div>

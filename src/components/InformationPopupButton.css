@@ -1,0 +1,25 @@
+.popup-content {
+    width: 500px;
+    height: 500px;
+    border-radius: 50px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    color: white;
+}
+
+.popup-button {
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+    font-weight: bold;
+    border-color: deepskyblue;
+    background-color: white;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.my-tooltip > .tooltip-inner {
+    background-color: #000;
+    color: floralwhite;
+    border: 1px solid #000;
+    width: 300px;
+}
