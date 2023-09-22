@@ -5,8 +5,13 @@
     "Letters": ["A", "G", "S", "K", "S", "L", "E", "N", "E", "T", "C", "E", "A", "L", "T", "W", "T", "J", "R", "S", "A", "E"]
   },
   "9/22/2023": {
-    "Theme": "Clothing and Accessories",
-    "Words": ["Jacket", "Glasses", "Anklet", "Sweater"],
-    "Letters": ["A", "G", "S", "K", "S", "L", "E", "N", "E", "T", "C", "E", "A", "L", "T", "W", "T", "J", "R", "S", "A", "E"]
+    "Theme": "3x3 Grid",
+    "Words": ["Too", "Urn", "Bee", "But", "Ore", "One"],
+    "Letters": ["O", "E", "R", "U", "N", "T", "B", "O", "E"]
+  },
+  "9/23/2023": {
+    "Theme": "Fulcrum",
+    "Words": ["Faded", "Exquisite", "Quiver", "Fiend"],
+    "Letters": ["D", "E", "Q", "I", "D", "E", "E", "V", "E", "Q", "S", "T", "I", "D", "F", "X", "U", "A", "F", "R", "N", "U"]
   }
 }

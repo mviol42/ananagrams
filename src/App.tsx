@@ -151,7 +151,7 @@ function App(props: AppProps) {
                         <div className={cn("col-4", "tile-bank")}>
                             <div>
                                 <InformationPopupButton/>
-                                Today's Theme: {theme}
+                                { theme }
                             </div>
                             <TileBank bank={tileBankLetters}/>
                             <div className='d-flex'>

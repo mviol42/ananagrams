@@ -5,5 +5,6 @@ export function getLetters(day: string) {
 }
 
 export function getTheme(day: string) {
-    return puzzles[day as keyof typeof puzzles].Theme;
+    const theme = puzzles[day as keyof typeof puzzles].Theme
+    return  `Today\'s Theme: ${theme ? theme : "Themeless"}`;
 }
