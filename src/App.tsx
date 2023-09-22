@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useRef, useState} from 'react';
 import './App.css';
 import Board from './components/Board';
 import TileBank from './components/TileBank';
@@ -6,6 +6,7 @@ import InformationPopupButton from './components/InformationPopupButton'
 import { DndContext } from '@dnd-kit/core';
 import cn from 'classnames';
 import { getLetters, getTheme } from './utils/DailyPuzzles/DailyPuzzleReader'
+import Timer from "./components/Timer";
 
 interface AppProps {}
 
@@ -13,18 +14,24 @@ export const boardSize = 10;
 export const blankTile = " "
 
 function App(props: AppProps) {
-    var dictionary = require('an-array-of-english-words');
-    var defaultValueInBoard = blankTile; // by default
-    var defaultBoard = [...Array(boardSize)].map(e => Array(boardSize).fill(defaultValueInBoard));
+    const dictionary = require('an-array-of-english-words');
+    const defaultValueInBoard = blankTile; // by default
+    const defaultBoard = [...Array(boardSize)].map(e => Array(boardSize).fill(defaultValueInBoard));
     const [boardLetters, setBoardLetters] = useState<string[][]>(defaultBoard);
     const [tileBankLetters, setTileBankLetters] = useState<string[]>(getLetters(new Date().toLocaleDateString()));
     const [theme] = useState<string>(getTheme(new Date().toLocaleDateString()));
     const [hasWon, setHasWon] = useState<boolean>(false);
     const [wasIncorrect, setWasIncorrect] = useState<boolean>(false);
+    const [timeString, setTimeString] = useState<string>('');
+    const [winningTimeString, setWinningTimeString] = useState<string>('');
+
 
 
     const updateBoard = (e: { active: any; over: any }) => {
+        // if we move over the same box we were just on, do nothing
         if (e.active.data.current.row === e.over.data.current.row && e.active.data.current.col === e.over.data.current.col) { return; }
+        // if we move one letter from over the same letter, do nothing
+
         const letter = e.active.data.current.letter;
         var tempBoardLetters = {...boardLetters};
         var tempLetter = blankTile;
@@ -36,6 +43,7 @@ function App(props: AppProps) {
 
         if (e.active.data.current.inBank) {
             const letterIndex = tileBankLetters.indexOf(letter);
+            if (tempBoardLetters[e.over.data.current.row][e.over.data.current.col] !== letter)
             tileBankLetters.splice(letterIndex, 1);
         }
 
@@ -128,8 +136,10 @@ function App(props: AppProps) {
     }
 
     const validate = () => {
+        console.log(timeString);
         const correct =  validateContinuity() && validateSpelling();
         if (correct) {
+            setWinningTimeString(timeString);
             setHasWon(true);
         } else {
             setWasIncorrect(true);
@@ -141,7 +151,7 @@ function App(props: AppProps) {
 
     return (
         <div className="App">
-            <div className='victory-banner center' hidden={!hasWon}> You won! </div>
+            <div className='victory-banner center' hidden={!hasWon}> You solved today's puzzle in {winningTimeString}! </div>
             <div className={`${gameIsBlurred} game`} >
                 <DndContext onDragEnd={handleDragEnd}>
                     <div className="row">
@@ -152,6 +162,7 @@ function App(props: AppProps) {
                             <div>
                                 <InformationPopupButton/>
                                 { theme }
+                                <Timer setTimeString={(value: any) => setTimeString(value)}/>
                             </div>
                             <TileBank bank={tileBankLetters}/>
                             <div className='d-flex'>
