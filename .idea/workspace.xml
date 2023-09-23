@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ce7b867c-2b6d-4120-add1-8fac3cc08554" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Timer.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/DailyPuzzles/daily-puzzles.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/DailyPuzzles/daily-puzzles.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -242,7 +240,9 @@
       <workItem from="1695219372016" duration="15774000" />
       <workItem from="1695371528045" duration="1183000" />
       <workItem from="1695392914090" duration="10000" />
-      <workItem from="1695393020569" duration="3925000" />
+      <workItem from="1695393020569" duration="4585000" />
+      <workItem from="1695472576877" duration="340000" />
+      <workItem from="1695473014966" duration="60000" />
     </task>
     <servers />
   </component>

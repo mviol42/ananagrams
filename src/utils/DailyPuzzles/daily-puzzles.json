@@ -13,5 +13,10 @@
     "Theme": "Fulcrum",
     "Words": ["Faded", "Exquisite", "Quiver", "Fiend"],
     "Letters": ["D", "E", "Q", "I", "D", "E", "E", "V", "E", "Q", "S", "T", "I", "D", "F", "X", "U", "A", "F", "R", "N", "U"]
+  },
+  "9/24/2023": {
+    "Theme": "Physics Terms",
+    "Words": ["Wave", "Atom", "Matter", "Motion", "Drag"],
+    "Letters": ["N", "G", "E", "O", "R", "D", "A", "M", "T", "O", "T", "I", "W", "E", "A", "M", "A", "V", "T", "O"]
   }
 }
