@@ -50,10 +50,8 @@ function Draggable(props: { id: any;
     };
 
     return (
-        <div  ref={setNodeRef} style={style} {...listeners} {...attributes}>
-            <div className={`bank tile`}>
+        <div  ref={setNodeRef} style={style} className={`bank tile`} {...listeners} {...attributes}>
                 { props.letter }
-            </div>
         </div>
 
     );

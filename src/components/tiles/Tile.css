@@ -9,7 +9,7 @@
     border-radius: 10px; /* Add rounded corners */
     border-color: transparent;
     border-style: none;
-    margin: 5px;
+    user-select: none;
 }
 
 
@@ -25,12 +25,14 @@
 }
 
 .board-full {
-    background-color: floralwhite; /* Set your desired background color */
+    background-color: darkgrey; /* Set your desired background color */
     border-color: blue;
     cursor: pointer;
+    margin: 5px;
 }
 
 .board-empty {
     background-color: lightgrey; /* Set your desired background color */
     border-color: black;
+    margin: 5px;
 }
