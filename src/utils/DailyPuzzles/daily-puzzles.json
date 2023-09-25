@@ -18,5 +18,15 @@
     "Theme": "Physics Terms",
     "Words": ["Wave", "Atom", "Matter", "Motion", "Drag"],
     "Letters": ["N", "G", "E", "O", "R", "D", "A", "M", "T", "O", "T", "I", "W", "E", "A", "M", "A", "V", "T", "O"]
+  },
+  "9/25/2023": {
+    "Theme": "Types of Bugs",
+    "Words": ["Ant", "Beetle", "Termite", "Cricket", "Bee"],
+    "Letters": ["E", "T", "I", "C", "E", "A", "K", "E", "R", "T", "B", "N", "L", "T", "E", "M", "C", "T", "E", "I", "E", "R"]
+  },
+  "9/26/2023": {
+    "Theme": "",
+    "Words": ["Rainy", "Olives", "Palm", "Sleepy"],
+    "Letters": ["N", "M", "V", "I", "L", "L", "I", "E", "O", "E", "Y", "P", "A", "Y", "E", "P", "R", "S"]
   }
 }
