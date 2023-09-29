@@ -18,8 +18,8 @@ function App(props: AppProps) {
     const defaultValueInBoard = blankTile; // by default
     const defaultBoard = [...Array(boardSize)].map(e => Array(boardSize).fill(defaultValueInBoard));
     const [boardLetters, setBoardLetters] = useState<string[][]>(defaultBoard);
-    const [tileBankLetters, setTileBankLetters] = useState<string[]>(getLetters(new Date().toLocaleDateString()));
-    const [theme] = useState<string>(getTheme(new Date().toLocaleDateString()));
+    let today = new Intl.DateTimeFormat('en-US', { timeZone: 'Europe/Paris' }).format(new Date)
+    const [tileBankLetters, setTileBankLetters] = useState<string[]>(getLetters(today));
     const [hasWon, setHasWon] = useState<boolean>(false);
     const [wasIncorrect, setWasIncorrect] = useState<boolean>(false);
     const [timeString, setTimeString] = useState<string>('');
@@ -161,7 +161,7 @@ function App(props: AppProps) {
                         <div className={cn("col-4", "tile-bank")}>
                             <div>
                                 <InformationPopupButton/>
-                                { theme }
+                                {/*{ theme }*/}
                                 <Timer setTimeString={(value: any) => setTimeString(value)}/>
                             </div>
                             <TileBank bank={tileBankLetters}/>

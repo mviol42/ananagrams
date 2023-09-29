@@ -14,7 +14,7 @@ function InformationPopupButton() {
                         <br />
                         Once your grid is ready, click "Validate" to check if it is a valid configuration.<br />
                         <br />
-                        Additionally, there will occasionally be a theme. There is a guaranteed solution with this theme, but feel free to use any english words to solve the puzzle.<br />
+                        There is always a guaranteed solution to the puzzle using english words.
                         <br />
                         Happy solving!
                     </p>
