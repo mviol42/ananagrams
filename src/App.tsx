@@ -153,28 +153,37 @@ function App(props: AppProps) {
     const validateIsRed = wasIncorrect ? 'red-' : '';
     const gameIsBlurred = hasWon ? 'blur' : '';
 
+    let left;
+    if (hasWon) {
+        left = <div className='victory-banner center'> You solved today's puzzle in {winningTimeString}! </div>
+    } else {
+        left =
+            <>
+                <div>
+                    <InformationPopupButton/>
+                    {/*{ theme }*/}
+                    <Timer setTimeString={(value: any) => setTimeString(value)}/>
+                </div>
+                <TileBank bank={tileBankLetters}/>
+                <div className='d-flex'>
+                    <button className='button' onClick={clear}> Clear</button>
+                    <button disabled={tileBankLetters.length !== 0}
+                            className={`${validateIsRed}validate-button`}
+                            onClick={validate}> {wasIncorrect ? 'Try Again' : 'Validate'} </button>
+                </div>
+            </>
+    }
+
     return (
         <div className="App">
-            <div className='victory-banner center' hidden={!hasWon}> You solved today's puzzle in {winningTimeString}! </div>
             <div className={`${gameIsBlurred} game`} >
                 <DndContext onDragEnd={handleDragEnd}>
                     <div className="row">
                         <div className={cn("col-8", "board")}>
-                            <Board currentBoard={boardLetters}/>
+                            <Board currentBoard={boardLetters} editable={hasWon}/>
                         </div>
                         <div className={cn("col-4", "tile-bank")}>
-                            <div>
-                                <InformationPopupButton/>
-                                {/*{ theme }*/}
-                                <Timer setTimeString={(value: any) => setTimeString(value)}/>
-                            </div>
-                            <TileBank bank={tileBankLetters}/>
-                            <div className='d-flex'>
-                                <button className='button' onClick={clear}> Clear </button>
-                                <button disabled={tileBankLetters.length !== 0}
-                                        className={`${validateIsRed}validate-button`}
-                                        onClick={validate}> {wasIncorrect ? 'Try Again' : 'Validate'} </button>
-                            </div>
+                            { left }
                         </div>
                     </div>
                 </DndContext>

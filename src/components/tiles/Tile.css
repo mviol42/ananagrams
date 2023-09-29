@@ -9,6 +9,8 @@
     border-radius: 10px; /* Add rounded corners */
     border-color: transparent;
     border-style: none;
+    user-select: none;
+    touch-action: none;
 }
 
 
@@ -21,6 +23,13 @@
     /*background-color: darkgreen;*/
     color: black;
     cursor: pointer;
+}
+
+.fixed-letter {
+    background-color: #f7dfa6;
+    /*background-color: darkgreen;*/
+    color: black;
+    margin: 5px;
 }
 
 .board-full {
