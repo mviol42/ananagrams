@@ -30,21 +30,25 @@ function App(props: AppProps) {
     const updateBoard = (e: { active: any; over: any }) => {
         // if we move over the same box we were just on, do nothing
         if (e.active.data.current.row === e.over.data.current.row && e.active.data.current.col === e.over.data.current.col) { return; }
-        // if we move one letter from over the same letter, do nothing
-
         const letter = e.active.data.current.letter;
         var tempBoardLetters = {...boardLetters};
         var tempLetter = blankTile;
 
-        if (tempBoardLetters[e.over.data.current.row][e.over.data.current.col]) {
+        // if we move one letter from over the same letter, do nothing
+        if (tempBoardLetters[e.over.data.current.row][e.over.data.current.col] === letter) { return; }
+
+        if (tempBoardLetters[e.over.data.current.row][e.over.data.current.col] !== blankTile) {
             tempLetter = tempBoardLetters[e.over.data.current.row][e.over.data.current.col]
         }
 
 
         if (e.active.data.current.inBank) {
             const letterIndex = tileBankLetters.indexOf(letter);
-            if (tempBoardLetters[e.over.data.current.row][e.over.data.current.col] !== letter)
             tileBankLetters.splice(letterIndex, 1);
+
+            if (tempLetter !== blankTile) {
+                tileBankLetters.push(tempLetter)
+            }
         }
 
         else {
