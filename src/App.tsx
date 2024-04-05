@@ -10,7 +10,7 @@ import Timer from "./components/Timer";
 
 interface AppProps {}
 
-export const boardSize = 10;
+export const boardSize = 9;
 export const blankTile = " "
 
 function App(props: AppProps) {

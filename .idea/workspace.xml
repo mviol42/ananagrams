@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ce7b867c-2b6d-4120-add1-8fac3cc08554" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/tiles/UndraggableLetterTile.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Board.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Board.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/tiles/Tile.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tiles/Tile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/DailyPuzzles/daily-puzzles.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/DailyPuzzles/daily-puzzles.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TileBank.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TileBank.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TileBank.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TileBank.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -291,7 +290,8 @@
       <workItem from="1695912893180" duration="533000" />
       <workItem from="1695927268051" duration="2459000" />
       <workItem from="1695994163739" duration="2066000" />
-      <workItem from="1695999028604" duration="193000" />
+      <workItem from="1695999028604" duration="2020000" />
+      <workItem from="1712341894120" duration="707000" />
     </task>
     <servers />
   </component>

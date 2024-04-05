@@ -12,7 +12,7 @@ interface TileBankProps {
 class TileBank extends Component<TileBankProps> {
     render () {
         const tiles = Array.from({ length: this.props.bank.length }, (_, i) => (
-            <div key={i} className="col-3 mt-4">
+            <div key={i} className="col-3 justify-content-center">
                 <LetterTile id={`${this.props.bank[i]}-${i}`}
                             key={`${i}`}
                             letter={this.props.bank[i]}

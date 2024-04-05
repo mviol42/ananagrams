@@ -4,8 +4,8 @@
 }
 
 .drop-box{
-    width: 400px; /* Adjust the width and height to make your square as desired */
-    height: 500px;
+    width: 325px; /* Adjust the width and height to make your square as desired */
+    height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,5 +13,5 @@
     border-color: lightgrey;
     border-style: groove;
     background-color: white;
-    margin-top: 10px;
+    margin: 10px;
 }

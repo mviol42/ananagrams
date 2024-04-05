@@ -20,28 +20,20 @@ class Board extends Component<BoardProps> {
         for (let i = 0; i < boardSize; i++) {
             const row = []
             for (let j = 0; j < boardSize; j++) {
+                let tile = this.props.currentBoard[i][j] === blankTile ? <BoardTile/> : <LetterTile id={`${i}-${j}-tile`}
+                                                                                                letter={this.props.currentBoard[i][j]}
+                                                                                                inBank={false}
+                                                                                                row={i}
+                                                                                                col={j}
+                />
+
                 row.push(
-                    <div className='col' key={`${i}-${j}`}>
-                        { this.props.currentBoard[i][j] === blankTile
-                            ? <Droppable id={`${i}-${j}`}
-                                         children={<BoardTile/>}
-                                         row={i}
-                                         col={j}
-                                         letter={blankTile}
-                            />
-                            : <Droppable id={`${i}-${j}`}
+                    <Droppable id={`${i}-${j}`}
+                                         children={tile}
                                          row={i}
                                          col={j}
                                          letter={this.props.currentBoard[i][j]}
-                                         children={
-                                             <LetterTile id={`${i}-${j}-tile`}
-                                                         letter={this.props.currentBoard[i][j]}
-                                                         inBank={false}
-                                                         row={i}
-                                                         col={j}
-                                             />}/>
-                        }
-                    </div>
+                    />
                 );
             }
             board.push(
@@ -105,7 +97,7 @@ function Droppable(props: { id: any,
     });
 
     return (
-        <div ref={setNodeRef} >
+        <div ref={setNodeRef} className='col' key={`${props.row}-${props.col}`}>
             { props.children }
         </div>
     );
