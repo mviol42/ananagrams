@@ -45,11 +45,13 @@ def load_puzzles():
     return puzzles
 
 def save_puzzles(puzzles):
-    script_dir = os.path.dirname(__file__)
-    puzzles_dir = os.path.abspath(os.path.join(script_dir, '../DailyPuzzles'))
-    os.makedirs(puzzles_dir, exist_ok=True)  # create if missing
-    filepath = os.path.join(puzzles_dir, 'daily-puzzles.json')
-    with open(filepath, 'w') as f:
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    # Go up one directory (PuzzleGenerator -> utils) and into DailyPuzzles folder
+    puzzles_dir = os.path.join(script_dir, '..', 'DailyPuzzles')
+    puzzles_dir = os.path.abspath(puzzles_dir)
+    os.makedirs(puzzles_dir, exist_ok=True)
+    file_path = os.path.join(puzzles_dir, 'daily-puzzles.json')
+    with open(file_path, 'w') as f:
         json.dump(puzzles, f, separators=(',', ': '))
 
 def append_daily_puzzle(letters, solution):
