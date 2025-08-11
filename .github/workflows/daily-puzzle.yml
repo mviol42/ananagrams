@@ -18,6 +18,10 @@ jobs:
         with:
           python-version: '3.x'
 
+      - name: Install dependencies
+        run: |
+          pip install -r src/utils/PuzzleGenerator/requirements.txt
+
       - name: Run Python script
         run: |
           python3 src/utils/PuzzleGenerator/puzzle_generator.py
