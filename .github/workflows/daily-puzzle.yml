@@ -1,5 +1,8 @@
 name: Generate Daily Puzzle
 
+permissions:
+  contents: write
+
 on:
   schedule:
     - cron: '0 8 * * *'  # Runs every day at 8 AM UTC
