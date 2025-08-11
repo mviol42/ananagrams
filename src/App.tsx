@@ -5,7 +5,7 @@ import TileBank from './components/TileBank';
 import InformationPopupButton from './components/InformationPopupButton'
 import { DndContext } from '@dnd-kit/core';
 import cn from 'classnames';
-import { getLetters, getTheme } from './utils/DailyPuzzles/DailyPuzzleReader'
+import { getLetters } from './utils/DailyPuzzles/DailyPuzzleReader'
 import Timer from "./components/Timer";
 
 interface AppProps {}
@@ -161,7 +161,6 @@ function App(props: AppProps) {
             <>
                 <div>
                     <InformationPopupButton/>
-                    {/*{ theme }*/}
                     <Timer setTimeString={(value: any) => setTimeString(value)}/>
                 </div>
                 <TileBank bank={tileBankLetters}/>
