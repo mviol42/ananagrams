@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, { useState} from 'react';
 import './App.css';
 import Board from './components/Board';
 import TileBank from './components/TileBank';
@@ -18,7 +18,7 @@ function App(props: AppProps) {
     const defaultValueInBoard = blankTile; // by default
     const defaultBoard = [...Array(boardSize)].map(e => Array(boardSize).fill(defaultValueInBoard));
     const [boardLetters, setBoardLetters] = useState<string[][]>(defaultBoard);
-    let today = new Intl.DateTimeFormat('en-US').format(new Date)
+    let today = new Intl.DateTimeFormat('en-US').format(new Date())
     const [tileBankLetters, setTileBankLetters] = useState<string[]>(getLetters(today));
     const [hasWon, setHasWon] = useState<boolean>(false);
     const [wasIncorrect, setWasIncorrect] = useState<boolean>(false);

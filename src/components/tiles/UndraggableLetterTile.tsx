@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import './Tile.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import {CSS} from '@dnd-kit/utilities';
-import { useDraggable } from '@dnd-kit/core';
 
 interface UndraggableLetterTileProps {
     letter:string | undefined;

@@ -1,38 +1,31 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import {defaultKeyboardCoordinateGetter} from "@dnd-kit/core/dist/sensors/keyboard/defaults";
+import React, { useState, useEffect } from 'react';
 
-const Timer = (props: any) => {
+const Timer = ({ setTimeString }: { setTimeString: (time: string) => void }) => {
     const [minutes, setMinutes] = useState(0);
     const [seconds, setSeconds] = useState(0);
 
-    const start = Date.now();
-
-
-    const getTime = () => {
-        const time =  Date.now() - start;
-        setMinutes(Math.floor((time / 1000 / 60) % 60));
-        setSeconds(Math.floor((time / 1000) % 60));
-    };
-
-    const getTimeString = () => {
-        return minutes + ':' + (seconds.toString().length > 1 ? `${seconds}` : `0${seconds}`);
-    }
-
     useEffect(() => {
-        const interval = setInterval(() => getTime(), 1000);
+        const start = Date.now();
+
+        const updateTime = () => {
+            const elapsed = Date.now() - start;
+            setMinutes(Math.floor((elapsed / 1000 / 60) % 60));
+            setSeconds(Math.floor((elapsed / 1000) % 60));
+        };
+
+        const interval = setInterval(updateTime, 1000);
         return () => clearInterval(interval);
     }, []);
 
     useEffect(() => {
-        props.setTimeString(getTimeString());
-    }, [seconds])
+        setTimeString(`${minutes}:${seconds.toString().padStart(2, '0')}`);
+    }, [minutes, seconds, setTimeString]);
 
     return (
         <div className="timer">
-            {`${getTimeString()}`}
+            {`${minutes}:${seconds.toString().padStart(2, '0')}`}
         </div>
     );
-}
+};
 
 export default Timer;
