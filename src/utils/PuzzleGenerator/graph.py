@@ -190,23 +190,3 @@ def trie_to_dawg(G):
                     G.N -= 1
                     del n
                     # one.strset.update(n.strset)  # space expensive
-
-
-if __name__ == "__main__":
-    lex = "car cars cat cats do dog dogs done ear ears eat eats"
-    with open('../data/twl06.txt', 'r') as infile:
-        w = infile.read()
-
-    G = DirectedGraph()
-
-    start = datetime.now()
-    G.parselex(w)  # [:200000])
-    print("Parsing took {}".format(datetime.now()-start))
-
-    print("Nodes = {}".format(G.N))
-
-    start = datetime.now()
-    trie_to_dawg(G)
-    print("Trimming to DAWG took {}".format(datetime.now()-start))
-
-    print("Nodes = {}".format(G.N))

@@ -33,7 +33,13 @@ def weighted_random_letters(n=16):
     weights = list(LETTER_FREQUENCIES.values())
     return random.choices(letters, weights=weights, k=n)
 
-PUZZLE_FILE = 'test.json'
+script_dir = os.path.dirname(os.path.abspath(__file__))
+# Go up one directory (PuzzleGenerator -> utils) and into DailyPuzzles folder
+puzzles_dir = os.path.join(script_dir, '..', 'DailyPuzzles')
+puzzles_dir = os.path.abspath(puzzles_dir)
+os.makedirs(puzzles_dir, exist_ok=True)
+PUZZLE_FILE = os.path.join(puzzles_dir, 'daily-puzzles.json')
+
 def load_puzzles():
     puzzles = {}
     if os.path.exists(PUZZLE_FILE):
@@ -45,13 +51,7 @@ def load_puzzles():
     return puzzles
 
 def save_puzzles(puzzles):
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    # Go up one directory (PuzzleGenerator -> utils) and into DailyPuzzles folder
-    puzzles_dir = os.path.join(script_dir, '..', 'DailyPuzzles')
-    puzzles_dir = os.path.abspath(puzzles_dir)
-    os.makedirs(puzzles_dir, exist_ok=True)
-    file_path = os.path.join(puzzles_dir, 'daily-puzzles.json')
-    with open(file_path, 'w') as f:
+    with open(PUZZLE_FILE, 'w') as f:
         json.dump(puzzles, f, separators=(',', ': '))
 
 def append_daily_puzzle(letters, solution):
@@ -70,8 +70,8 @@ if __name__ == '__main__':
     while looking_for_solution:  # Keep generating until we find a solvable puzzle
         letters = weighted_random_letters()
         solution = BANANAGRAM_SOLVER.solve([l for l in letters])
-        valid, words = BANANAGRAM_SOLVER.validate(solution)
-        if valid:
+        if bool(solution):
+            valid, words = BANANAGRAM_SOLVER.validate(solution)
             append_daily_puzzle(letters=letters, solution=words)
             looking_for_solution = False
             
