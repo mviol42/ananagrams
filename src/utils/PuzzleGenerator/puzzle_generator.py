@@ -58,7 +58,7 @@ def append_daily_puzzle(letters, solution):
     """Append today's puzzle to the JSON file."""
     puzzles = load_puzzles()
     tomorrow = datetime.now() + timedelta(days=1)
-    date_str = tomorrow.strftime("%m-%d-%Y")
+    date_str = f"{tomorrow.month}/{tomorrow.day}/{tomorrow.year}"
     puzzles[date_str] = {
         "Letters": letters,
         "Words": solution,
