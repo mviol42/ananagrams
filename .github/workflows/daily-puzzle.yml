@@ -28,11 +28,24 @@ jobs:
       - name: Run Python script
         run: |
           python3 src/utils/PuzzleGenerator/puzzle_generator.py
+          
+      - name: Commit daily puzzles JSON
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/utils/DailyPuzzles/daily-puzzles.json
+          git commit -m "Update daily puzzles [skip ci]" || echo "No changes to commit"
+          git push
 
       - name: Build website
         run: |
           npm install
           npm run predeploy
+
+      - name: Copy puzzles JSON into build
+        run: |
+          mkdir -p build/data
+          cp src/utils/DailyPuzzles/daily-puzzles.json build/data/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
