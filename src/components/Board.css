@@ -1,5 +1,7 @@
 .board-container {
-    padding: 15px;
+    padding: 5px;
+    background-color: transparent;
+    border: none;
 }
 
 .tile-row {

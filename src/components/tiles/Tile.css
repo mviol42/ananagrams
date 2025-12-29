@@ -2,7 +2,7 @@
 :root {
     --tile-size: 45px;
     --tile-font-size: 25px;
-    --tile-margin: 5px;
+    --tile-margin: 1px;
     --tile-border-radius: 10px;
 }
 
@@ -11,7 +11,7 @@
     :root {
         --tile-size: min(9vw, 38px);
         --tile-font-size: min(5vw, 20px);
-        --tile-margin: 2px;
+        --tile-margin: 1px;
         --tile-border-radius: 6px;
     }
 }
@@ -29,6 +29,28 @@
     border-style: none;
     user-select: none;
     touch-action: none;
+}
+
+/* Board tiles have no border-radius by default */
+.board-tile {
+    border-radius: 0;
+}
+
+/* Corner tiles get rounded corners */
+.corner-top-left {
+    border-top-left-radius: var(--tile-border-radius);
+}
+
+.corner-top-right {
+    border-top-right-radius: var(--tile-border-radius);
+}
+
+.corner-bottom-left {
+    border-bottom-left-radius: var(--tile-border-radius);
+}
+
+.corner-bottom-right {
+    border-bottom-right-radius: var(--tile-border-radius);
 }
 
 .selected {
@@ -56,7 +78,7 @@
 
 .board-empty {
     background-color: lightgrey;
-    border: 2px solid black;
+    border: none;
     margin: var(--tile-margin);
 }
 

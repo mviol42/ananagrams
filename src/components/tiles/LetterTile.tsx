@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import './Tile.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import {CSS} from '@dnd-kit/utilities';
 import { useDraggable } from '@dnd-kit/core';
+import cn from 'classnames';
 
 interface LetterTileProps {
     letter:string | undefined;
@@ -11,13 +11,14 @@ interface LetterTileProps {
     row?: number,
     col?: number,
     bankIndex?: number,
-    isBeingDragged?: boolean
+    isBeingDragged?: boolean,
+    cornerClass?: string
 }
 
 class LetterTile extends Component<LetterTileProps> {
     render () {
         return (
-            <div className={this.props.inBank ? '' : 'board-full tile'}>
+            <div className={this.props.inBank ? '' : cn('board-full', 'tile', 'board-tile', this.props.cornerClass)}>
                 <Draggable id={this.props.id}
                     children={this.props.letter}
                     letter={this.props.letter}
@@ -25,7 +26,8 @@ class LetterTile extends Component<LetterTileProps> {
                     row={this.props.row}
                     col={this.props.col}
                     bankIndex={this.props.bankIndex}
-                    isBeingDragged={this.props.isBeingDragged}/>
+                    isBeingDragged={this.props.isBeingDragged}
+                    cornerClass={this.props.cornerClass}/>
             </div>
         );
     }
@@ -41,7 +43,8 @@ function Draggable(props: { id: any;
                             row?: number,
                             col?: number,
                             bankIndex?: number,
-                            isBeingDragged?: boolean}) {
+                            isBeingDragged?: boolean,
+                            cornerClass?: string}) {
     const {attributes, listeners, setNodeRef} = useDraggable({
         id: props.id,
         data: {
@@ -59,8 +62,12 @@ function Draggable(props: { id: any;
         opacity: props.isBeingDragged ? 0 : 1,
     };
 
+    const tileClass = props.inBank
+        ? 'bank tile'
+        : cn('bank', 'tile', 'board-tile', props.cornerClass);
+
     return (
-        <div ref={setNodeRef} style={style} className={`bank tile`} {...listeners} {...attributes}>
+        <div ref={setNodeRef} style={style} className={tileClass} {...listeners} {...attributes}>
                 { props.letter }
         </div>
 

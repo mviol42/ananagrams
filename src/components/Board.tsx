@@ -14,6 +14,16 @@ interface BoardProps {
     activeDragId?: string | null;
 }
 
+// Helper function to get corner class based on position
+const getCornerClass = (row: number, col: number): string | undefined => {
+    const lastIndex = boardSize - 1;
+    if (row === 0 && col === 0) return 'corner-top-left';
+    if (row === 0 && col === lastIndex) return 'corner-top-right';
+    if (row === lastIndex && col === 0) return 'corner-bottom-left';
+    if (row === lastIndex && col === lastIndex) return 'corner-bottom-right';
+    return undefined;
+};
+
 class Board extends Component<BoardProps> {
     getEditableBoard() {
         const board = [];
@@ -22,13 +32,17 @@ class Board extends Component<BoardProps> {
             const row = []
             for (let j = 0; j < boardSize; j++) {
                 const tileId = `${i}-${j}-tile`;
-                let tile = this.props.currentBoard[i][j] === blankTile ? <BoardTile/> : <LetterTile id={tileId}
-                                                                                                letter={this.props.currentBoard[i][j]}
-                                                                                                inBank={false}
-                                                                                                row={i}
-                                                                                                col={j}
-                                                                                                isBeingDragged={this.props.activeDragId === tileId}
-                />
+                const cornerClass = getCornerClass(i, j);
+                let tile = this.props.currentBoard[i][j] === blankTile
+                    ? <BoardTile cornerClass={cornerClass}/>
+                    : <LetterTile id={tileId}
+                                  letter={this.props.currentBoard[i][j]}
+                                  inBank={false}
+                                  row={i}
+                                  col={j}
+                                  isBeingDragged={this.props.activeDragId === tileId}
+                                  cornerClass={cornerClass}
+                      />
 
                 row.push(
                     <Droppable id={`${i}-${j}`}
@@ -52,15 +66,17 @@ class Board extends Component<BoardProps> {
         for (let i = 0; i < boardSize; i++) {
             const row = []
             for (let j = 0; j < boardSize; j++) {
+                const cornerClass = getCornerClass(i, j);
                 row.push(
                     <div className='col' key={`${i}-${j}`}>
                         { this.props.currentBoard[i][j] === blankTile
-                            ? <BoardTile/>
+                            ? <BoardTile cornerClass={cornerClass}/>
                             : <UndraggableLetterTile id={`${i}-${j}-tile`}
                                           letter={this.props.currentBoard[i][j]}
                                           inBank={false}
                                           row={i}
-                                          col={j}/>
+                                          col={j}
+                                          cornerClass={cornerClass}/>
                         }
                     </div>
                 );

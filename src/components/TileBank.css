@@ -4,17 +4,16 @@
 }
 
 .drop-box {
-    display: grid;
-    grid-template-columns: repeat(4, var(--tile-size));
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-content: start;
     gap: 8px;
-    padding: 15px;
+    padding: 10px;
     border: none;
     background-color: transparent;
-    margin: 10px;
-    width: calc(4 * var(--tile-size) + 3 * 8px + 30px);
-    min-height: 250px;
+    margin: 5px auto;
+    max-width: calc(8 * var(--tile-size) + 7 * 8px + 20px);
 }
 
 /* Override Bootstrap col-3 width for tile bank items */
@@ -22,18 +21,4 @@
     width: auto;
     flex: 0 0 auto;
     padding: 0;
-}
-
-/* Mobile: responsive tile bank */
-@media (max-width: 768px) {
-    .drop-box {
-        grid-template-columns: repeat(auto-fill, minmax(var(--tile-size), auto));
-        width: 100%;
-        max-width: 95vw;
-        min-height: 80px;
-        padding: 10px;
-        margin: 5px auto;
-        border-radius: 8px;
-        gap: 6px;
-    }
 }

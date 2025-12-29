@@ -2,7 +2,7 @@
   text-align: center;
   padding: 10px;
   min-height: 100vh;
-  background: linear-gradient(135deg, #8B7355 0%, #A0826D 25%, #8B7355 50%, #9C8B7A 75%, #8B7355 100%);
+  background-color: white;
 }
 
 /* Header with timer and Ananagrams */
@@ -11,8 +11,8 @@
   justify-content: center;
   align-items: center;
   gap: 20px;
-  padding: 10px;
-  margin-bottom: 10px;
+  padding: 5px;
+  margin-bottom: 0;
 }
 
 .header-section .timer {
@@ -32,19 +32,21 @@
   }
 }
 
-/* Desktop: side by side layout */
+/* Stacked layout - board on top, controls on bottom */
 .game-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-  gap: 20px;
+  align-items: center;
+  gap: 10px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .board-section {
   flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
 }
 
 .controls-section {
@@ -52,36 +54,21 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-width: 200px;
 }
 
-/* Mobile: stacked layout with fixed bottom controls */
+/* Mobile: smaller gaps */
 @media (max-width: 768px) {
   .App {
     padding: 5px;
-    padding-bottom: 220px; /* Space for fixed controls */
   }
 
   .game-container {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+    gap: 5pxA;
   }
 
   .board-section {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    overflow-x: auto;
-  }
-
-  .controls-section {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 10px;
-    z-index: 1000;
+    width: auto;
+    background-color: transparent;
   }
 }
 

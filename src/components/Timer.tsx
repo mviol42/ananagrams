@@ -2,32 +2,46 @@ import React, { useState, useEffect, useRef } from 'react';
 
 const Timer = ({ setTimeString }: { setTimeString: (time: string) => void }) => {
     const [elapsedTime, setElapsedTime] = useState(0); // in milliseconds
-    const [isVisible, setIsVisible] = useState(!document.hidden);
+    const [isActive, setIsActive] = useState(true);
     const lastTickRef = useRef<number>(Date.now());
     const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-    // Handle visibility change
+    // Handle visibility change and window focus/blur
     useEffect(() => {
-        const handleVisibilityChange = () => {
-            if (document.hidden) {
-                setIsVisible(false);
-            } else {
-                setIsVisible(true);
-                // Reset the last tick to now so we don't count hidden time
+        const updateActiveState = (active: boolean) => {
+            setIsActive(active);
+            if (active) {
                 lastTickRef.current = Date.now();
             }
         };
 
+        const handleVisibilityChange = () => {
+            updateActiveState(!document.hidden);
+        };
+
+        const handleBlur = () => {
+            updateActiveState(false);
+        };
+
+        const handleFocus = () => {
+            updateActiveState(true);
+        };
+
         document.addEventListener('visibilitychange', handleVisibilityChange);
+        window.addEventListener('blur', handleBlur);
+        window.addEventListener('focus', handleFocus);
+
         return () => {
             document.removeEventListener('visibilitychange', handleVisibilityChange);
+            window.removeEventListener('blur', handleBlur);
+            window.removeEventListener('focus', handleFocus);
         };
     }, []);
 
-    // Timer logic - only runs when visible
+    // Timer logic - only runs when active (visible and focused)
     useEffect(() => {
-        if (!isVisible) {
-            // Clear interval when not visible
+        if (!isActive) {
+            // Clear interval when not active
             if (intervalRef.current) {
                 clearInterval(intervalRef.current);
                 intervalRef.current = null;
@@ -35,7 +49,7 @@ const Timer = ({ setTimeString }: { setTimeString: (time: string) => void }) => 
             return;
         }
 
-        // Reset last tick when becoming visible
+        // Reset last tick when becoming active
         lastTickRef.current = Date.now();
 
         intervalRef.current = setInterval(() => {
@@ -50,7 +64,7 @@ const Timer = ({ setTimeString }: { setTimeString: (time: string) => void }) => 
                 clearInterval(intervalRef.current);
             }
         };
-    }, [isVisible]);
+    }, [isActive]);
 
     // Update time string for parent component
     useEffect(() => {
