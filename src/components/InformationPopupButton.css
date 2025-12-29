@@ -11,11 +11,10 @@
     align-items: center;
     height: auto;
     padding: 5px 12px;
-    font-size: 18px;
+    font-size: 28px;
     font-weight: bold;
-    border-color: darkgreen;
-    background-color: white;
-    border-radius: 10px;
+    border: none;
+    background-color: transparent;
     margin: 5px;
     white-space: nowrap;
 }

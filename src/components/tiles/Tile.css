@@ -48,15 +48,15 @@
 }
 
 .board-full {
-    background-color: darkgrey;
-    border-color: blue;
+    background-color: transparent;
+    border: none;
     cursor: pointer;
     margin: var(--tile-margin);
 }
 
 .board-empty {
     background-color: lightgrey;
-    border-color: black;
+    border: 2px solid black;
     margin: var(--tile-margin);
 }
 
