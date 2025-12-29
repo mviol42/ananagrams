@@ -31,36 +31,36 @@ describe('InformationPopupButton Component', () => {
     expect(() => fireEvent.click(button)).not.toThrow();
   });
 
-  test('shows tooltip on hover', async () => {
+  test('shows modal on click', async () => {
     render(<InformationPopupButton />);
 
     const button = screen.getByText('Ananagrams');
-    fireEvent.mouseOver(button);
+    fireEvent.click(button);
 
     await waitFor(() => {
       expect(screen.getByText(/Welcome to Ananagrams!/i)).toBeInTheDocument();
     });
   });
 
-  test('tooltip contains game instructions', async () => {
+  test('modal contains game instructions', async () => {
     render(<InformationPopupButton />);
 
     const button = screen.getByText('Ananagrams');
-    fireEvent.mouseOver(button);
+    fireEvent.click(button);
 
     await waitFor(() => {
-      expect(screen.getByText(/Each day, you'll be dealt letter tiles/i)).toBeInTheDocument();
+      expect(screen.getByText(/Every day you get a new set of letters/i)).toBeInTheDocument();
     });
   });
 
-  test('tooltip mentions validation', async () => {
+  test('modal mentions validation', async () => {
     render(<InformationPopupButton />);
 
     const button = screen.getByText('Ananagrams');
-    fireEvent.mouseOver(button);
+    fireEvent.click(button);
 
     await waitFor(() => {
-      expect(screen.getByText(/click "Validate"/i)).toBeInTheDocument();
+      expect(screen.getByText(/hit "Check grid!"/i)).toBeInTheDocument();
     });
   });
 });

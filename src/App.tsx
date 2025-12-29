@@ -206,7 +206,7 @@ function App(props: AppProps) {
                     <button className='button' onClick={clear}>Clear</button>
                     <button disabled={tileBankLetters.length !== 0}
                             className={`${validateIsRed}validate-button`}
-                            onClick={validate}>{wasIncorrect ? 'Try Again' : 'Validate'}</button>
+                            onClick={validate}>{wasIncorrect ? 'Try again' : 'Check grid!'}</button>
                 </div>
             </>
         );
