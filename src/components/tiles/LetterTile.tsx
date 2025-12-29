@@ -9,7 +9,9 @@ interface LetterTileProps {
     id: any,
     inBank: boolean,
     row?: number,
-    col?: number
+    col?: number,
+    bankIndex?: number,
+    isBeingDragged?: boolean
 }
 
 class LetterTile extends Component<LetterTileProps> {
@@ -21,7 +23,9 @@ class LetterTile extends Component<LetterTileProps> {
                     letter={this.props.letter}
                     inBank={this.props.inBank}
                     row={this.props.row}
-                    col={this.props.col}/>
+                    col={this.props.col}
+                    bankIndex={this.props.bankIndex}
+                    isBeingDragged={this.props.isBeingDragged}/>
             </div>
         );
     }
@@ -35,22 +39,28 @@ function Draggable(props: { id: any;
                             letter: string | undefined,
                             inBank: boolean,
                             row?: number,
-                            col?: number}) {
-    const {attributes, listeners, setNodeRef, transform} = useDraggable({
+                            col?: number,
+                            bankIndex?: number,
+                            isBeingDragged?: boolean}) {
+    const {attributes, listeners, setNodeRef} = useDraggable({
         id: props.id,
         data: {
             inBank: props.inBank,
             letter: props.letter,
             row: props.row,
             col: props.col,
+            bankIndex: props.bankIndex,
         }
     });
+
+    // Hide original tile while dragging (DragOverlay shows the dragged tile)
+    // Use parent-controlled isBeingDragged prop for proper timing
     const style = {
-        transform: CSS.Translate.toString(transform),
+        opacity: props.isBeingDragged ? 0 : 1,
     };
 
     return (
-        <div  ref={setNodeRef} style={style} className={`bank tile`} {...listeners} {...attributes}>
+        <div ref={setNodeRef} style={style} className={`bank tile`} {...listeners} {...attributes}>
                 { props.letter }
         </div>
 

@@ -1,17 +1,41 @@
 .tile-wrapper {
-    display: flex; /* Use flexbox to align items horizontally */
-    align-items: center; /* Vertically center items within the .tile-wrapper */
+    display: flex;
+    align-items: center;
 }
 
-.drop-box{
-    width: 325px; /* Adjust the width and height to make your square as desired */
-    height: 400px;
-    display: flex;
+.drop-box {
+    display: grid;
+    grid-template-columns: repeat(4, var(--tile-size));
     justify-content: center;
-    align-items: center;
-    border-radius: 10px; /* Add rounded corners */
+    align-content: start;
+    gap: 8px;
+    padding: 15px;
+    border-radius: 10px;
     border-color: lightgrey;
     border-style: groove;
     background-color: white;
     margin: 10px;
+    width: calc(4 * var(--tile-size) + 3 * 8px + 30px);
+    min-height: 250px;
+}
+
+/* Override Bootstrap col-3 width for tile bank items */
+.drop-box > .col-3 {
+    width: auto;
+    flex: 0 0 auto;
+    padding: 0;
+}
+
+/* Mobile: responsive tile bank */
+@media (max-width: 768px) {
+    .drop-box {
+        grid-template-columns: repeat(auto-fill, minmax(var(--tile-size), auto));
+        width: 100%;
+        max-width: 95vw;
+        min-height: 80px;
+        padding: 10px;
+        margin: 5px auto;
+        border-radius: 8px;
+        gap: 6px;
+    }
 }

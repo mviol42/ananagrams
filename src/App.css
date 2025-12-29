@@ -1,14 +1,97 @@
 .App {
   text-align: center;
+  padding: 10px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #8B7355 0%, #A0826D 25%, #8B7355 50%, #9C8B7A 75%, #8B7355 100%);
 }
 
+/* Header with timer and Ananagrams */
+.header-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.header-section .timer {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .header-section {
+    gap: 15px;
+    padding: 5px;
+    margin-bottom: 5px;
+  }
+
+  .header-section .timer {
+    font-size: 1.2rem;
+  }
+}
+
+/* Desktop: side by side layout */
+.game-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.board-section {
+  flex: 0 0 auto;
+}
+
+.controls-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 200px;
+}
+
+/* Mobile: stacked layout with fixed bottom controls */
+@media (max-width: 768px) {
+  .App {
+    padding: 5px;
+    padding-bottom: 220px; /* Space for fixed controls */
+  }
+
+  .game-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .board-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+  }
+
+  .controls-section {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    z-index: 1000;
+  }
+}
+
+/* Legacy classes for backwards compatibility */
 .row {
   justify-content: center;
 }
 
 .board {
-  width: fit-content !important;
-  min-width: 700px !important;
+  width: fit-content;
 }
 
 .tile-bank {
@@ -42,15 +125,16 @@
 
 
 .button {
-  width: 90px;
   height: 35px;
+  padding: 0 15px;
   border-color: transparent;
   margin: 10px;
-  border-radius: 10px; /* Add rounded corners */
+  border-radius: 10px;
   font-weight: bold;
   text-align: center;
   color: white;
   background-color: black;
+  white-space: nowrap;
 }
 
 .button:hover {
@@ -73,15 +157,16 @@
 
 
 .validate-button {
-  width: 90px;
   height: 35px;
+  padding: 0 15px;
   border-color: transparent;
   margin: 10px;
-  border-radius: 10px; /* Add rounded corners */
+  border-radius: 10px;
   font-weight: bold;
   text-align: center;
   color: white;
   background-color: darkgreen;
+  white-space: nowrap;
 }
 
 .validate-button:hover {
@@ -96,15 +181,16 @@
 }
 
 .red-validate-button {
-  width: 90px;
   height: 35px;
+  padding: 0 15px;
   border-color: transparent;
   margin: 10px;
-  border-radius: 10px; /* Add rounded corners */
+  border-radius: 10px;
   font-weight: bold;
   text-align: center;
   color: white;
   background-color: darkred;
+  white-space: nowrap;
 }
 
 .red-validate-button:hover {
@@ -118,21 +204,26 @@
   cursor: not-allowed;
 }
 
-.victory-banner {
-  position: absolute;
-  top: 50%;
-  left: 75%;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-  width: 350px;
-  height: 115px;
-  background-color: transparent;
-  border-radius: 15px;
-  margin: auto;
+/* Completion message shown in controls area after winning */
+.completion-message {
   text-align: center;
-  vertical-align: middle;
-  font-weight: bolder;
-  font-size: 35px;
+  padding: 20px;
+}
+
+.completion-message p {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+  .completion-message {
+    padding: 10px;
+  }
+
+  .completion-message p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
 }
 
 .game {

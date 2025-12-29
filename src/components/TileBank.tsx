@@ -7,16 +7,19 @@ import { useDroppable } from '@dnd-kit/core';
 
 interface TileBankProps {
     bank: string[];
+    activeDragId?: string | null;
 }
 
 class TileBank extends Component<TileBankProps> {
     render () {
         const tiles = Array.from({ length: this.props.bank.length }, (_, i) => (
             <div key={i} className="col-3 justify-content-center">
-                <LetterTile id={`${this.props.bank[i]}-${i}`}
+                <LetterTile id={`bank-${i}`}
                             key={`${i}`}
                             letter={this.props.bank[i]}
-                            inBank={true}/>
+                            inBank={true}
+                            bankIndex={i}
+                            isBeingDragged={this.props.activeDragId === `bank-${i}`}/>
             </div>
         ));
 

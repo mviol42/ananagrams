@@ -1,7 +1,17 @@
-.tile-row {
-    width: 100%;
+.board-container {
+    padding: 15px;
 }
 
-.col {
+.tile-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    margin-top: 0 !important;
+}
+
+.tile-row .col {
     padding: 0px;
+    flex: 0 0 auto;
+    width: auto;
 }

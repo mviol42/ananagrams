@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "Bash(wc:*)",
+      "Bash(git -C /Users/mike/git/ananagrams log --oneline -10)",
+      "Bash(CI=true npm test:*)",
+      "Bash(npm install:*)",
+      "Bash(cat:*)",
+      "Bash(npm run build:*)"
+    ]
+  }
+}

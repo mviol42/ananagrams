@@ -11,6 +11,7 @@ import UndraggableLetterTile from "./tiles/UndraggableLetterTile";
 interface BoardProps {
     currentBoard: string[][];
     editable: boolean;
+    activeDragId?: string | null;
 }
 
 class Board extends Component<BoardProps> {
@@ -20,11 +21,13 @@ class Board extends Component<BoardProps> {
         for (let i = 0; i < boardSize; i++) {
             const row = []
             for (let j = 0; j < boardSize; j++) {
-                let tile = this.props.currentBoard[i][j] === blankTile ? <BoardTile/> : <LetterTile id={`${i}-${j}-tile`}
+                const tileId = `${i}-${j}-tile`;
+                let tile = this.props.currentBoard[i][j] === blankTile ? <BoardTile/> : <LetterTile id={tileId}
                                                                                                 letter={this.props.currentBoard[i][j]}
                                                                                                 inBank={false}
                                                                                                 row={i}
                                                                                                 col={j}
+                                                                                                isBeingDragged={this.props.activeDragId === tileId}
                 />
 
                 row.push(
@@ -72,7 +75,7 @@ class Board extends Component<BoardProps> {
     render () {
 
         return (
-            <div className="container-fluid">
+            <div className="container-fluid board-container">
                 { this.props.editable ? this.getFixedBoard() : this.getEditableBoard()}
             </div>
         );

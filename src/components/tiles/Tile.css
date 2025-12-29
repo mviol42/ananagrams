@@ -1,18 +1,35 @@
-.tile{
-    width: 45px; /* Adjust the width and height to make your square as desired */
-    height: 45px;
+/* CSS Variables for responsive tile sizing */
+:root {
+    --tile-size: 45px;
+    --tile-font-size: 25px;
+    --tile-margin: 5px;
+    --tile-border-radius: 10px;
+}
+
+/* Mobile: smaller tiles that fit the screen */
+@media (max-width: 768px) {
+    :root {
+        --tile-size: min(9vw, 38px);
+        --tile-font-size: min(5vw, 20px);
+        --tile-margin: 2px;
+        --tile-border-radius: 6px;
+    }
+}
+
+.tile {
+    width: var(--tile-size);
+    height: var(--tile-size);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 25px;
+    font-size: var(--tile-font-size);
     font-weight: bold;
-    border-radius: 10px; /* Add rounded corners */
+    border-radius: var(--tile-border-radius);
     border-color: transparent;
     border-style: none;
     user-select: none;
     touch-action: none;
 }
-
 
 .selected {
     border-color: blue;
@@ -20,27 +37,33 @@
 
 .bank {
     background-color: #f7dfa6;
-    /*background-color: darkgreen;*/
     color: black;
     cursor: pointer;
 }
 
 .fixed-letter {
     background-color: #f7dfa6;
-    /*background-color: darkgreen;*/
     color: black;
-    margin: 5px;
+    margin: var(--tile-margin);
 }
 
 .board-full {
-    background-color: darkgrey; /* Set your desired background color */
+    background-color: darkgrey;
     border-color: blue;
     cursor: pointer;
-    margin: 5px;
+    margin: var(--tile-margin);
 }
 
 .board-empty {
-    background-color: lightgrey; /* Set your desired background color */
+    background-color: lightgrey;
     border-color: black;
-    margin: 5px;
+    margin: var(--tile-margin);
+}
+
+/* Dragging state - tile grows */
+.tile.dragging {
+    transform: scale(1.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    opacity: 0.95;
 }

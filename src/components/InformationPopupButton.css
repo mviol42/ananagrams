@@ -7,13 +7,17 @@
 }
 
 .popup-button {
-    height: 20px;
-    font-size: 10px;
+    display: inline-flex;
+    align-items: center;
+    height: auto;
+    padding: 5px 12px;
+    font-size: 18px;
     font-weight: bold;
     border-color: darkgreen;
     background-color: white;
     border-radius: 10px;
     margin: 5px;
+    white-space: nowrap;
 }
 
 .my-tooltip > .tooltip-inner {

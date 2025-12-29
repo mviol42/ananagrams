@@ -1,0 +1,5 @@
+Please use TailwindCSS as needed.
+In the mobile version, the 9x9 grid should remain.
+There should be a tile bank where players can see their tiles. It can look different, but should be anchored at the bottom. Tiles should be drag and drop and should grow. When hovering over a tile in the grid, the tile underneath should.
+At the top of the screen, there should be a timer. The timer should pause if the player leaves the tab.
+When the player validates their board and everything is correct, they should proceed to a "Puzzle solved" modal which shows the text "Puzzle solved!" followed by two buttons 1) View Solution and 2) Share Time which lets you share the time you completed this puzzle in using iOS/android share. The second button is going to be more complicated, please use context7 for this and ask for feedback frequently. The first priority is making a working game which reuses the daily-puzzles.json on mobile.

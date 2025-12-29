@@ -3,10 +3,11 @@ import './App.css';
 import Board from './components/Board';
 import TileBank from './components/TileBank';
 import InformationPopupButton from './components/InformationPopupButton'
-import { DndContext } from '@dnd-kit/core';
-import cn from 'classnames';
+import { DndContext, DragOverlay } from '@dnd-kit/core';
 import { getLetters } from './utils/DailyPuzzles/DailyPuzzleReader'
 import Timer from "./components/Timer";
+import DraggingTile from './components/tiles/DraggingTile';
+import VictoryModal from './components/VictoryModal';
 
 interface AppProps {}
 
@@ -24,6 +25,9 @@ function App(props: AppProps) {
     const [wasIncorrect, setWasIncorrect] = useState<boolean>(false);
     const [timeString, setTimeString] = useState<string>('');
     const [winningTimeString, setWinningTimeString] = useState<string>('');
+    const [activeDragLetter, setActiveDragLetter] = useState<string | null>(null);
+    const [activeDragId, setActiveDragId] = useState<string | null>(null);
+    const [showVictoryModal, setShowVictoryModal] = useState<boolean>(false);
 
 
 
@@ -41,13 +45,16 @@ function App(props: AppProps) {
             tempLetter = tempBoardLetters[e.over.data.current.row][e.over.data.current.col]
         }
 
+        // Create a new array to avoid mutating state directly
+        let newTileBankLetters = [...tileBankLetters];
 
         if (e.active.data.current.inBank) {
-            const letterIndex = tileBankLetters.indexOf(letter);
-            tileBankLetters.splice(letterIndex, 1);
+            // Use the specific bankIndex to remove the correct tile
+            const bankIndex = e.active.data.current.bankIndex;
+            newTileBankLetters.splice(bankIndex, 1);
 
             if (tempLetter !== blankTile) {
-                tileBankLetters.push(tempLetter)
+                newTileBankLetters.push(tempLetter)
             }
         }
 
@@ -57,7 +64,7 @@ function App(props: AppProps) {
 
         tempBoardLetters[e.over.data.current.row][e.over.data.current.col] = letter;
 
-        setTileBankLetters(tileBankLetters);
+        setTileBankLetters(newTileBankLetters);
         setBoardLetters(tempBoardLetters);
     }
 
@@ -66,17 +73,35 @@ function App(props: AppProps) {
         const letter = e.active.data.current.letter;
         var tempBoardLetters = {...boardLetters};
         tempBoardLetters[e.active.data.current.row][e.active.data.current.col] = blankTile;
-        tileBankLetters.push(letter);
 
-        setTileBankLetters(tileBankLetters);
+        // Create new array to avoid mutating state directly
+        const newTileBankLetters = [...tileBankLetters, letter];
+
+        setTileBankLetters(newTileBankLetters);
         setBoardLetters(tempBoardLetters);
     }
 
+    const handleDragStart = (e: { active: any }) => {
+        setActiveDragLetter(e.active.data.current.letter);
+        setActiveDragId(e.active.id);
+    };
+
     const handleDragEnd = (e: { active: any; over: any }) => {
-        if (e.over === null) { return; }
+        if (e.over === null) {
+            // Dropped outside - just clear drag state
+            setActiveDragLetter(null);
+            setActiveDragId(null);
+            return;
+        }
+
+        // Perform the action first, then clear drag state
         if (e.over.id === 'drop-box') { addToBank(e); }
         else { updateBoard(e); }
         setWasIncorrect(false);
+
+        // Clear drag state after state updates
+        setActiveDragLetter(null);
+        setActiveDragId(null);
     };
 
     const clear = () => {
@@ -140,53 +165,82 @@ function App(props: AppProps) {
     }
 
     const validate = () => {
-        console.log(timeString);
-        const correct =  validateContinuity() && validateSpelling();
+        const correct = validateContinuity() && validateSpelling();
         if (correct) {
             setWinningTimeString(timeString);
             setHasWon(true);
+            setShowVictoryModal(true);
         } else {
             setWasIncorrect(true);
         }
     }
 
-    const validateIsRed = wasIncorrect ? 'red-' : '';
-    const gameIsBlurred = hasWon ? 'blur' : '';
+    const handleCloseModal = () => {
+        setShowVictoryModal(false);
+    };
 
-    let left;
+    const handleViewSolution = () => {
+        setShowVictoryModal(false);
+        // Board remains displayed since hasWon is true
+    };
+
+    const validateIsRed = wasIncorrect ? 'red-' : '';
+    const gameIsBlurred = showVictoryModal ? 'blur' : '';
+
+    // Controls section content (tile bank and buttons)
+    let controls;
     if (hasWon) {
-        left = <div className='victory-banner center'> You solved today's puzzle in {winningTimeString}! </div>
+        controls = (
+            <div className='completion-message'>
+                <p>Completed in <strong>{winningTimeString}</strong></p>
+                <button className='button' onClick={() => setShowVictoryModal(true)}>
+                    Share
+                </button>
+            </div>
+        );
     } else {
-        left =
+        controls = (
             <>
-                <div>
-                    <InformationPopupButton/>
-                    <Timer setTimeString={(value: any) => setTimeString(value)}/>
-                </div>
-                <TileBank bank={tileBankLetters}/>
+                <TileBank bank={tileBankLetters} activeDragId={activeDragId}/>
                 <div className='d-flex'>
-                    <button className='button' onClick={clear}> Clear</button>
+                    <button className='button' onClick={clear}>Clear</button>
                     <button disabled={tileBankLetters.length !== 0}
                             className={`${validateIsRed}validate-button`}
-                            onClick={validate}> {wasIncorrect ? 'Try Again' : 'Validate'} </button>
+                            onClick={validate}>{wasIncorrect ? 'Try Again' : 'Validate'}</button>
                 </div>
             </>
+        );
     }
 
     return (
         <div className="App">
+            {/* Header with timer and Ananagrams - always at top */}
+            <div className="header-section">
+                <InformationPopupButton/>
+                {!hasWon && <Timer setTimeString={(value: any) => setTimeString(value)}/>}
+            </div>
+
             <div className={`${gameIsBlurred} game`} >
-                <DndContext onDragEnd={handleDragEnd}>
-                    <div className="row">
-                        <div className={cn("col-8", "board")}>
-                            <Board currentBoard={boardLetters} editable={hasWon}/>
+                <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
+                    <div className="game-container">
+                        <div className="board-section">
+                            <Board currentBoard={boardLetters} editable={hasWon} activeDragId={activeDragId}/>
                         </div>
-                        <div className={cn("col-4", "tile-bank")}>
-                            { left }
+                        <div className="controls-section">
+                            { controls }
                         </div>
                     </div>
+                    <DragOverlay dropAnimation={null} style={{ zIndex: 9999 }}>
+                        {activeDragLetter ? <DraggingTile letter={activeDragLetter} /> : null}
+                    </DragOverlay>
                 </DndContext>
             </div>
+            <VictoryModal
+                show={showVictoryModal}
+                timeString={winningTimeString}
+                onClose={handleCloseModal}
+                onViewSolution={handleViewSolution}
+            />
         </div>
     );
 }
