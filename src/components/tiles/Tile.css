@@ -88,11 +88,6 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     z-index: 9999;
     opacity: 0.95;
-    /* Fix for iOS in-app browsers (Facebook Messenger, etc.) */
-    -webkit-transform: scale(1.2) translate3d(0, 0, 0);
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    will-change: transform;
 }
 
 /* Invalid letter flash animation - one flash over 2 seconds */

@@ -3,7 +3,7 @@ import './App.css';
 import Board from './components/Board';
 import TileBank from './components/TileBank';
 import InformationPopupButton from './components/InformationPopupButton'
-import { DndContext, DragOverlay } from '@dnd-kit/core';
+import { DndContext, DragOverlay, MouseSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core';
 import { getLetters } from './utils/DailyPuzzles/DailyPuzzleReader'
 import Timer from "./components/Timer";
 import DraggingTile from './components/tiles/DraggingTile';
@@ -16,6 +16,15 @@ export const blankTile = " "
 
 function App(props: AppProps) {
     const dictionary = require('an-array-of-english-words');
+
+    // Use MouseSensor + TouchSensor for better compatibility with in-app browsers
+    const mouseSensor = useSensor(MouseSensor, {
+        activationConstraint: { distance: 5 },
+    });
+    const touchSensor = useSensor(TouchSensor, {
+        activationConstraint: { distance: 5 },
+    });
+    const sensors = useSensors(mouseSensor, touchSensor);
     const defaultValueInBoard = blankTile; // by default
     const defaultBoard = [...Array(boardSize)].map(e => Array(boardSize).fill(defaultValueInBoard));
     const [boardLetters, setBoardLetters] = useState<string[][]>(defaultBoard);
@@ -246,7 +255,7 @@ function App(props: AppProps) {
             </div>
 
             <div className={`${gameIsBlurred} game`} >
-                <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
+                <DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
                     <div className="game-container">
                         <div className="board-section">
                             <Board currentBoard={boardLetters} editable={hasWon} activeDragId={activeDragId} invalidPositions={invalidPositions}/>
