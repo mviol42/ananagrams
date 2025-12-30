@@ -18,7 +18,7 @@ LETTER_FREQUENCIES = {
 
 # Load dictionary graph once
 def load_solver():
-    lexicon_path = os.path.join(os.path.dirname(__file__), 'data', '10000words.txt')
+    lexicon_path = os.path.join(os.path.dirname(__file__), 'data', 'puzzle-generation-corpus.txt')
     G = DirectedGraph()
     with open(lexicon_path, 'r') as f:
         G.parselex(f.read())
