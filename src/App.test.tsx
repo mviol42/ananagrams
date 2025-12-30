@@ -28,13 +28,13 @@ describe('App Component', () => {
 
   test('renders validate button', () => {
     render(<App />);
-    const validateButton = screen.getByText(/Validate/i);
+    const validateButton = screen.getByText(/Check grid!/i);
     expect(validateButton).toBeInTheDocument();
   });
 
   test('validate button is disabled when tiles remain in bank', () => {
     render(<App />);
-    const validateButton = screen.getByText(/Validate/i);
+    const validateButton = screen.getByText(/Check grid!/i);
     expect(validateButton).toBeDisabled();
   });
 

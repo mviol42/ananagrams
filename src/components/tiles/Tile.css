@@ -89,3 +89,18 @@
     z-index: 9999;
     opacity: 0.95;
 }
+
+/* Invalid letter flash animation - one flash over 2 seconds */
+.invalid-flash {
+    animation: red-flash 1.5s ease-in-out;
+}
+
+@keyframes red-flash {
+    0%, 50%, 100% {
+        background-color: #f7dfa6;
+    }
+    25%, 75% {
+        background-color: indianred;
+    }
+    
+}

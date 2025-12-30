@@ -12,7 +12,8 @@ interface LetterTileProps {
     col?: number,
     bankIndex?: number,
     isBeingDragged?: boolean,
-    cornerClass?: string
+    cornerClass?: string,
+    isInvalid?: boolean
 }
 
 class LetterTile extends Component<LetterTileProps> {
@@ -27,7 +28,8 @@ class LetterTile extends Component<LetterTileProps> {
                     col={this.props.col}
                     bankIndex={this.props.bankIndex}
                     isBeingDragged={this.props.isBeingDragged}
-                    cornerClass={this.props.cornerClass}/>
+                    cornerClass={this.props.cornerClass}
+                    isInvalid={this.props.isInvalid}/>
             </div>
         );
     }
@@ -44,7 +46,8 @@ function Draggable(props: { id: any;
                             col?: number,
                             bankIndex?: number,
                             isBeingDragged?: boolean,
-                            cornerClass?: string}) {
+                            cornerClass?: string,
+                            isInvalid?: boolean}) {
     const {attributes, listeners, setNodeRef} = useDraggable({
         id: props.id,
         data: {
@@ -64,7 +67,7 @@ function Draggable(props: { id: any;
 
     const tileClass = props.inBank
         ? 'bank tile'
-        : cn('bank', 'tile', 'board-tile', props.cornerClass);
+        : cn('bank', 'tile', 'board-tile', props.cornerClass, { 'invalid-flash': props.isInvalid });
 
     return (
         <div ref={setNodeRef} style={style} className={tileClass} {...listeners} {...attributes}>

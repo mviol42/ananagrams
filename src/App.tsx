@@ -23,6 +23,7 @@ function App(props: AppProps) {
     const [tileBankLetters, setTileBankLetters] = useState<string[]>(getLetters(today));
     const [hasWon, setHasWon] = useState<boolean>(false);
     const [wasIncorrect, setWasIncorrect] = useState<boolean>(false);
+    const [invalidPositions, setInvalidPositions] = useState<Set<string>>(new Set());
     const [timeString, setTimeString] = useState<string>('');
     const [winningTimeString, setWinningTimeString] = useState<string>('');
     const [activeDragLetter, setActiveDragLetter] = useState<string | null>(null);
@@ -139,39 +140,63 @@ function App(props: AppProps) {
         return counter === 1;
     }
 
-    const validateSpelling = () => {
-        var words: string[] = []
+    const validateSpelling = (): { valid: boolean; invalidPositions: Set<string> } => {
+        const invalid = new Set<string>();
+
+        // Check rows
         for (let i = 0; i < boardSize; i++) {
-            words.push(boardLetters[i].join(""));
-        }
-
-        for (let i = 0; i < boardSize; i++) {
-            var column: string[] = [];
-            for (let j = 0; j < boardSize; j++) {
-                column.push(boardLetters[j][i]);
-            }
-            words.push(column.join(""));
-        }
-
-        var toCheck = words.join("").split(" ");
-
-        for (let i = 0; i < toCheck.length; i++) {
-            if (toCheck[i].length > 1 && dictionary.indexOf(toCheck[i].toLowerCase()) === -1) {
-                return false;
+            const row = boardLetters[i].join("");
+            const words = row.split(" ");
+            let colIndex = 0;
+            for (const word of words) {
+                if (word.length > 1 && dictionary.indexOf(word.toLowerCase()) === -1) {
+                    // Mark all positions in this invalid word
+                    for (let k = 0; k < word.length; k++) {
+                        invalid.add(`${i}-${colIndex + k}`);
+                    }
+                }
+                colIndex += word.length + 1; // +1 for the space
             }
         }
 
-        return true;
+        // Check columns
+        for (let j = 0; j < boardSize; j++) {
+            let column = "";
+            for (let i = 0; i < boardSize; i++) {
+                column += boardLetters[i][j];
+            }
+            const words = column.split(" ");
+            let rowIndex = 0;
+            for (const word of words) {
+                if (word.length > 1 && dictionary.indexOf(word.toLowerCase()) === -1) {
+                    // Mark all positions in this invalid word
+                    for (let k = 0; k < word.length; k++) {
+                        invalid.add(`${rowIndex + k}-${j}`);
+                    }
+                }
+                rowIndex += word.length + 1; // +1 for the space
+            }
+        }
+
+        return { valid: invalid.size === 0, invalidPositions: invalid };
     }
 
     const validate = () => {
-        const correct = validateContinuity() && validateSpelling();
+        const isContinuous = validateContinuity();
+        const spellingResult = validateSpelling();
+        const correct = isContinuous && spellingResult.valid;
         if (correct) {
             setWinningTimeString(timeString);
             setHasWon(true);
             setShowVictoryModal(true);
+            setInvalidPositions(new Set());
         } else {
             setWasIncorrect(true);
+            setInvalidPositions(spellingResult.invalidPositions);
+            // Clear invalid positions after animation completes (2 seconds)
+            setTimeout(() => {
+                setInvalidPositions(new Set());
+            }, 1500);
         }
     }
 
@@ -224,7 +249,7 @@ function App(props: AppProps) {
                 <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
                     <div className="game-container">
                         <div className="board-section">
-                            <Board currentBoard={boardLetters} editable={hasWon} activeDragId={activeDragId}/>
+                            <Board currentBoard={boardLetters} editable={hasWon} activeDragId={activeDragId} invalidPositions={invalidPositions}/>
                         </div>
                         <div className="controls-section">
                             { controls }

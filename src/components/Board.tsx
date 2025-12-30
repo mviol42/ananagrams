@@ -12,6 +12,7 @@ interface BoardProps {
     currentBoard: string[][];
     editable: boolean;
     activeDragId?: string | null;
+    invalidPositions?: Set<string>;
 }
 
 // Helper function to get corner class based on position
@@ -33,6 +34,7 @@ class Board extends Component<BoardProps> {
             for (let j = 0; j < boardSize; j++) {
                 const tileId = `${i}-${j}-tile`;
                 const cornerClass = getCornerClass(i, j);
+                const isInvalid = this.props.invalidPositions?.has(`${i}-${j}`) ?? false;
                 let tile = this.props.currentBoard[i][j] === blankTile
                     ? <BoardTile cornerClass={cornerClass}/>
                     : <LetterTile id={tileId}
@@ -42,6 +44,7 @@ class Board extends Component<BoardProps> {
                                   col={j}
                                   isBeingDragged={this.props.activeDragId === tileId}
                                   cornerClass={cornerClass}
+                                  isInvalid={isInvalid}
                       />
 
                 row.push(
