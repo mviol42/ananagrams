@@ -24,12 +24,8 @@ function App(props: AppProps) {
     }, []);
 
     // Use MouseSensor + TouchSensor for better compatibility with in-app browsers
-    const mouseSensor = useSensor(MouseSensor, {
-        activationConstraint: { distance: 5 },
-    });
-    const touchSensor = useSensor(TouchSensor, {
-        activationConstraint: { distance: 5 },
-    });
+    const mouseSensor = useSensor(MouseSensor);
+    const touchSensor = useSensor(TouchSensor);
     const sensors = useSensors(mouseSensor, touchSensor);
     const defaultValueInBoard = blankTile; // by default
     const defaultBoard = [...Array(boardSize)].map(e => Array(boardSize).fill(defaultValueInBoard));
