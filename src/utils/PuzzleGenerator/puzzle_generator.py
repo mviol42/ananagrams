@@ -54,24 +54,30 @@ def save_puzzles(puzzles):
     with open(PUZZLE_FILE, 'w') as f:
         json.dump(puzzles, f, separators=(',', ': '))
 
-def append_daily_puzzle(letters, solution):
-    """Append today's puzzle to the JSON file."""
+def append_puzzle_for_date(letters, solution, target_date):
+    """Append a puzzle for a specific date to the JSON file."""
     puzzles = load_puzzles()
-    tomorrow = datetime.now() + timedelta(days=1)
-    date_str = f"{tomorrow.month}/{tomorrow.day}/{tomorrow.year}"
+    date_str = f"{target_date.month}/{target_date.day}/{target_date.year}"
     puzzles[date_str] = {
         "Letters": letters,
         "Words": solution,
     }
     save_puzzles(puzzles)
 
-if __name__ == '__main__':
-    looking_for_solution = True
-    while looking_for_solution:  # Keep generating until we find a solvable puzzle
+def generate_puzzle_for_date(target_date):
+    """Generate and save a puzzle for a specific date."""
+    while True:  # Keep generating until we find a solvable puzzle
         letters = weighted_random_letters()
         solution = BANANAGRAM_SOLVER.solve([l for l in letters])
         if bool(solution):
             valid, words = BANANAGRAM_SOLVER.validate(solution)
-            append_daily_puzzle(letters=letters, solution=words)
-            looking_for_solution = False
+            append_puzzle_for_date(letters=letters, solution=words, target_date=target_date)
+            return
+
+if __name__ == '__main__':
+    # Generate puzzles for the next 7 days
+    for day_offset in range(1, 8):
+        target_date = datetime.now() + timedelta(days=day_offset)
+        generate_puzzle_for_date(target_date)
+        print(f"Generated puzzle for {target_date.month}/{target_date.day}/{target_date.year}")
             
