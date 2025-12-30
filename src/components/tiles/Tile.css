@@ -29,6 +29,7 @@
     border-style: none;
     user-select: none;
     touch-action: none;
+    -webkit-touch-callout: none; /* Prevents iOS context menu on long press */
 }
 
 /* Board tiles have no border-radius by default */

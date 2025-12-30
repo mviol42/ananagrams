@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 import Board from './components/Board';
 import TileBank from './components/TileBank';
@@ -15,7 +15,13 @@ export const boardSize = 9;
 export const blankTile = " "
 
 function App(props: AppProps) {
-    const dictionary = require('an-array-of-english-words');
+    // Load dictionary in background after mount to reduce initial bundle size
+    const dictionaryRef = useRef<string[] | null>(null);
+    useEffect(() => {
+        import('an-array-of-english-words').then((module) => {
+            dictionaryRef.current = module.default;
+        });
+    }, []);
 
     // Use MouseSensor + TouchSensor for better compatibility with in-app browsers
     const mouseSensor = useSensor(MouseSensor, {
@@ -114,6 +120,12 @@ function App(props: AppProps) {
         setActiveDragId(null);
     };
 
+    const handleDragCancel = () => {
+        // Clean up drag state when drag is cancelled (important for mobile browsers)
+        setActiveDragLetter(null);
+        setActiveDragId(null);
+    };
+
     const clear = () => {
         setBoardLetters(defaultBoard);
         setTileBankLetters(getLetters(today.toString()));
@@ -151,6 +163,12 @@ function App(props: AppProps) {
 
     const validateSpelling = (): { valid: boolean; invalidPositions: Set<string> } => {
         const invalid = new Set<string>();
+        const dictionary = dictionaryRef.current;
+
+        // If dictionary hasn't loaded yet, treat as invalid
+        if (!dictionary) {
+            return { valid: false, invalidPositions: invalid };
+        }
 
         // Check rows
         for (let i = 0; i < boardSize; i++) {
@@ -255,7 +273,7 @@ function App(props: AppProps) {
             </div>
 
             <div className={`${gameIsBlurred} game`} >
-                <DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
+                <DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd} onDragCancel={handleDragCancel}>
                     <div className="game-container">
                         <div className="board-section">
                             <Board currentBoard={boardLetters} editable={hasWon} activeDragId={activeDragId} invalidPositions={invalidPositions}/>
